@@ -1,0 +1,158 @@
+body, table tr td, input {
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    line-height: 1;
+}
+#TabbarTop, #SubToolbar {
+    background: none repeat scroll 0 0 #DDDDDD;
+}
+#Toolbar, #TabbarTop td div, #ToolbarIn {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+#Toolbar {
+    padding: 0;
+}
+#Toolbar ul li ul li {
+    font-size: 0.85em;
+}
+#SubToolbar {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #333333;
+}
+#SubToolbar {
+    font-size: 1.2em;
+}
+#SubToolbar div {
+    line-height: 32px;
+}
+div#Toolbar a.Button {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+div#Toolbar a.Button {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #BDBCBD;
+    font-weight: normal;
+    line-height: 1.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+div#Toolbar a.Button:hover {
+    background: none repeat scroll 0 0 #BDBCBD;
+    border: 1px solid #989898;
+    font-size: 1.2em;
+}
+a.Button {
+    background: none repeat scroll 0 0 #F5F5F5;
+    font-size: 1em;
+}
+a.Button:hover {
+    background: none repeat scroll 0 0 #DDDDDD;
+}
+#MainMenu {
+    overflow: hidden;
+}
+#MainMenu #MainMenuContent {
+    background: none repeat scroll 0 0 #DEDEDE;
+    color: white;
+}
+#MainMenu #MainMenuContent .MenuBlock {
+}
+#MainMenu .MenuBlock a {
+    color: #DEDEDE;
+    font-size: 1.2em;
+}
+#MainMenu .MenuBlock a.ActiveItem {
+    color: #06608F;
+}
+div.TabbedForm dl.TabbedFormList dd.Tab {
+    background: none repeat scroll 0 0 #F1F1F1;
+    color: black;
+    padding-bottom: 9px;
+}
+div.TabbedForm dl.TabbedFormList dd.Tab.Active {
+    background: none repeat scroll 0 0 #DEDEDE;
+    color: #333333;
+}
+div.TabbedForm table.VerticaslTabForm dl.TabbedFormList dd a span {
+    background: none repeat scroll 0 0 #EDBC80;
+    color: black;
+}
+div.TabbedForm table.VerticaslTabForm dl.TabbedFormList dd.Active a span {
+    background: none repeat scroll 0 0 #DEDEDE;
+    color: white;
+}
+div.TabbedForm dl.TabbedFormList dd.Tab a span {
+    color: black;
+    font-weight: normal;
+}
+div.TabbedForm dl.TabbedFormList dd.Tab.Active a span {
+    color: #333333;
+    font-weight: bold;
+}
+div.TabbedForm div.ScrollableArea {
+    background: none repeat scroll 0 0 #FFFFEA;
+    border: 1px solid #F5F0BB;
+}
+span.FormCaption {
+}
+div.SplitterPanelHeader.Active, div.SplitterHeaderPanelDiv {
+    background: url("top_bg.gif") repeat-x scroll 0 0 transparent;
+    color: black;
+    font-family: "Trebuchet MS";
+    height: 33px;
+}
+.SplitterLeftPanelContainer div.SplitterPanelHeader {
+    height: 25px;
+}
+.SplitterRightPanelContainer div.SplitterPanelHeader.Active tr td {
+    font-size: 1.4em;
+}
+.SplitterRightPanelContainer div.SplitterPanelHeader.Active tr td .HeaderLinks tr td {
+    font-size: 0.7em;
+}
+table.Grid thead tr {
+    background: url("./themes/simplelist-background-gradient-gray.gif") repeat-x scroll center bottom white;
+}
+table.List thead tr {
+}
+table.ListHeader tr {
+    background: url("./themes/simplelist-background-gradient-gray.gif") repeat-x scroll center bottom white;
+}
+table.Grid tbody {
+    background: none repeat scroll 0 0 white;
+}
+table.Grid tbody tr td img {
+    margin-right: 2px;
+}
+table.SimpleList tbody {
+    background: none repeat scroll 0 0 white;
+}
+table.List tbody {
+}
+table.Grid tr.Odd {
+    background: none repeat scroll 0 0 #FAFAE7;
+}
+table.SimpleList tr.Odd {
+    background: none repeat scroll 0 0 #FAFAE7;
+}
+table.List tr:hover {
+    background: none repeat scroll 0 0 #F5F0BB;
+}
+table.SimpleList tbody tr:hover {
+    background: none repeat scroll 0 0 #F5F0BB;
+}
+table.Grid tbody tr:hover {
+    background: none repeat scroll 0 0 #F5F0BB;
+}
+div.TabbedForm dl.TabbedFormList dt.TabPage {
+    background: none repeat scroll 0 0 #FCFCFC;
+}
+#ListFooterContainer {
+    background: url("./themes/simplelist-background-gradient-gray.gif") repeat-x scroll center bottom white;
+}
+.TBLabel {
+    font-size: 1.25em;
+    padding-left: 10px;
+    padding-top: 4px;
+}
