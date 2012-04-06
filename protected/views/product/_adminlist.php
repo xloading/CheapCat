@@ -94,12 +94,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		          ),
 		        ),
 		        // View button
-		        /*'view' => array(
+		        'view' => array(
 		          'click' => 'updateDialogOpen',
+		          'url' => 'Yii::app()->createUrl(
+		            "/product/view",
+		            array( "id" => $data->primaryKey ) )',
 		          'options' => array(
-		            'data-update-dialog-title' => Yii::t( 'app', 'Preview product' ),
+		            'data-update-dialog-title' => Yii::t( 'labels', 'Preview product' ),
 		          ),
-		        ),*/
+		        ),
 		),
 	),
 )));

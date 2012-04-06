@@ -69,7 +69,7 @@ class Product extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'category' => array(self::BELONGS_TO, 'Productcategory', 'categoryid'),
-			'productbysuppliers' => array(self::MANY_MANY, 'Productbysupplier', 'productbysupplier(productid,supplierid)'),
+			'productbysuppliers' => array(self::HAS_MANY, 'Productbysupplier', 'productid'),
 			'productfeedbacks' => array(self::HAS_MANY, 'Productfeedback', 'productid'),
 			'productrating' => array(self::HAS_ONE, 'Productrating', 'productid'),
 			'brand' => array(self::BELONGS_TO, 'Brand', 'brand_id'),
@@ -90,6 +90,11 @@ class Product extends CActiveRecord
 			'smallpic' => 'Smallpic',
 			'largepic' => 'Largepic',
 		);
+	}
+	
+	public function behaviors(){
+          return array( 'CAdvancedArBehavior' => array(
+            'class' => 'application.extensions.CAdvancedArBehavior'));
 	}
 
 	/**
@@ -178,4 +183,117 @@ class Product extends CActiveRecord
 		}
 		return sprintf("%02d",rand(1,5)).'/'.$imageName;
 	}
+	
+	/**
+     * Find product attribute value
+     * @param Attribute $attr attribute
+     * @return string
+     */
+    public function findAttrValue($attr)
+    {
+        $res = Productattrvalue::model()->findByAttributes(array('product_id' => $this->id, 'attr_id' => $attr->id));
+        if (!isset($res))
+            return '';
+        if ($attr->type == '5')
+            return $res->attrlistvalue_id;
+        else
+        {
+            return $res->value;
+        }
+    }
+    
+	/**
+     * Save product attribute values from array
+     * @param $data array with product attribute values
+     */
+    public function SaveAttrs($data)
+    {
+        //save product attrs
+        if (!isset($data))
+            return;
+        //check exist good features first
+        $attrValues = Productattrvalue::model()->findAllByAttributes(array('product_id' => $this->id));
+
+        foreach ($attrValues as $attrValue) {
+            if (isset($attrValue->attrlistvalue)) {
+                if (($attrValue->attrlistvalue->attr->type == '1')||($attrValue->attrlistvalue->attr->type == '3')) { //if feature is string type
+                    if (empty($data['normal'][$attrValue->attrlistvalue->attr->id]))
+                        $attrValue->delete();
+                    elseif ($data['normal'][$attrValue->attrValue->attr->id] !=
+                            $attrValue->attrlistvalue_id
+                    ) {
+                        if ($data['normal'][$attrValue->attrlistvalue->attr->id] == '0')
+                            $attrValue->value = $data['new'][$attrValue->attrValue->attr->id];
+                        else
+                            $attrValue->attrlistvalue_id = $data['normal'][$attrValue->attrValue->attr->id];
+                        $attrValue->save();
+                    }
+                }
+            } elseif (isset($attrValue->attr)) {
+                if ($attrValue->attr->type == '2') { //if feature is boolean type
+                    if ($data['normal'][$attrValue->attr->id] == '0')
+                        $attrValue->delete();
+                    elseif ($data['normal'][$attrValue->attr->id] != $attrValue->value) {
+                        $attrValue->value = $data['normal'][$attrValue->attr->id];
+                        $attrValue->save();
+                    }
+                } elseif ($attrValue->attr->type == '3') { //if feature is integer type
+                    if (empty($data['normal'][$attrValue->attr->id]))
+                        $attrValue->delete();
+                    elseif ($data['normal'][$attrValue->attr->id] != $attrValue->value) {
+                        $attrValue->value = $data['normal'][$attrValue->attr->id];
+                        $attrValue->save();
+                    }
+                }
+            }
+        }
+
+        $newFeature = TRUE;
+        foreach ($data['normal'] as $attrId => $attrValue) {
+            foreach ($attrValues as $attrListValue) {
+                if ($attrListValue->attrlistvalue !== null && $attrListValue->attrlistvalue->attr_id == $attrId)
+                    $newFeature = FALSE;
+                if ($attrListValue->attr->id == $attrId)
+                    $newFeature = FALSE;
+            }
+            //var_dump($newFeature);
+            //var_dump($attrValue);
+            if ($newFeature) {
+                $attr = Attribute::model()->findByPk($attrId);
+				//var_dump($attr->type);
+                $newProductAttr = new Productattrvalue;
+                $newProductAttr->product_id = $this->id;
+                if ($attr->type == '5' || $attr->type == '6') {
+                    if ($attrValue == '0' && !empty($data['new'][$attrId])) {
+                        //add new attribute value
+                        $newAttrListValue = new Attrvaluelist;
+                        $newAttrListValue->attr_id = $attr->id;
+                        $newAttrListValue->value = $data['new'][$attrId];
+                        
+                        //var_dump($newAttrListValue);
+                        
+                        $newAttrListValue->save();
+                        $newAttrListValue->refresh();
+                        $newProductAttr->attrlistvalue_id = $newAttrListValue->id;
+                        
+                        //var_dump($newProductAttr);
+                        
+                        $newProductAttr->save();
+                    } elseif ($attrValue != '0') {
+                        $newProductAttr->attrlistvalue_id = $attrValue;
+                        $newProductAttr->save();
+                    }
+                } elseif ($attr->type == '2' && $attrValue != '0') {
+                    $newProductAttr->value = $attrValue;
+                    $newProductAttr->attr_id = $attrId;
+                    $newProductAttr->save();
+                } elseif (!empty($attrValue)) {
+                    $newProductAttr->value = $attrValue;
+                    $newProductAttr->attr_id = $attrId;
+					$newProductAttr->save();
+                }
+            }
+            $newFeature = TRUE;
+        }
+    }
 }

@@ -11,17 +11,14 @@ $this->menu=array(
 ?>
 
 <?php
-$this->widget( 'application.extensions.EUpdateDialog.EUpdateDialog',
-	array(
-		'dialogOptions' => array(
-	    	'width' => 550,
-		),
-		'options' => array(
-			//'categoryDivUrl' => CHtml::normalizeUrl(array('/productcategory/admin')),
-			//'callback' => 'js:function() {if(typeof $.fn.yiiGridView != "undefined") { $.fn.yiiGridView.update("product-grid");}}'
-		)
-	)
-);
+echo CHtml::link(
+			Yii::t('labels','Add brand'),
+			CHtml::normalizeUrl(array('/brand/create')),
+		  	array(
+			    'class' => 'update-dialog-open-link',
+			    'data-update-dialog-title' => Yii::t( 'labels', 'Add brand' ),
+			)
+		);
 
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'brand-grid',
@@ -52,6 +49,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		          'options' => array(
 		            'data-update-dialog-title' => Yii::t( 'app', 'Update brand' ),
 					//'class' => 'update-dialog-open-link',
+		          ),
+		        ),
+		        // View button
+		        'view' => array(
+		          'click' => 'updateDialogOpen',
+		          'url' => 'Yii::app()->createUrl(
+		            "/brand/view",
+		            array( "id" => $data->primaryKey ) )',
+		          'options' => array(
+		            'data-update-dialog-title' => Yii::t( 'labels', 'Preview brand' ),
 		          ),
 		        ),
 			),

@@ -46,7 +46,7 @@ class Supplier extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, address, url, description, dateadded, juridicname, ogrn, juridicaddress', 'required'),
+			array('name, address, url, description', 'required'),
 			array('ogrn, juridicaddress', 'numerical', 'integerOnly'=>true),
 			array('name, url', 'length', 'max'=>100),
 			array('address, juridicname', 'length', 'max'=>200),
@@ -65,7 +65,7 @@ class Supplier extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'productbysuppliers' => array(self::MANY_MANY, 'Productbysupplier', 'productbysupplier(supplierid,productid)'),
+			'productsbysupplier' => array(self::HAS_MANY, 'Productbysupplier', 'supplierid'),
 			'supplierfeedback' => array(self::HAS_ONE, 'Supplierfeedback', 'id'),
 			'supplierrating' => array(self::HAS_ONE, 'Supplierrating', 'supplierid'),
 		);
@@ -87,6 +87,11 @@ class Supplier extends CActiveRecord
 			'ogrn' => 'Ogrn',
 			'juridicaddress' => 'Juridicaddress',
 		);
+	}
+
+	public function behaviors(){
+          return array( 'CAdvancedArBehavior' => array(
+            'class' => 'application.extensions.CAdvancedArBehavior'));
 	}
 
 	/**

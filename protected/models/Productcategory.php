@@ -41,11 +41,11 @@ class Productcategory extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('parentid', 'numerical', 'integerOnly'=>true),
+			array('parentid, inherit_attrs_from_parent', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parentid, name', 'safe', 'on'=>'search'),
+			array('id, parentid, name, inherit_attrs_from_parent', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +60,7 @@ class Productcategory extends CActiveRecord
 			'products' => array(self::HAS_MANY, 'Product', 'categoryid'),
 			'parent' => array(self::BELONGS_TO, 'Productcategory', 'parentid'),
 			'productcategories' => array(self::HAS_MANY, 'Productcategory', 'parentid', 'order' => 'name ASC'),
+			'attrs' => array(self::MANY_MANY, 'Attribute', 'categoryattribute(category_id,attribute_id)'),
 		);
 	}
 
@@ -72,6 +73,7 @@ class Productcategory extends CActiveRecord
 			'id' => 'ID',
 			'parentid' => 'Parentid',
 			'name' => 'Name',
+			'inherit_attrs_from_parent' => 'Inherit attributes'
 		);
 	}
 
@@ -95,7 +97,11 @@ class Productcategory extends CActiveRecord
 		));
 	}
 	
-	public function getListed() {
+	public function behaviors(){
+          return array( 'CAdvancedArBehavior' => array(
+            'class' => 'application.extensions.CAdvancedArBehavior'));
+	}
+	/*public function getListed() {
 	    $subitems = array();
 	    if($this->productcategories) foreach($this->productcategories as $child) {
 	        $subitems[] = $child->getListed();
@@ -104,5 +110,5 @@ class Productcategory extends CActiveRecord
 	    if($subitems != array()) 
 	        $returnarray = array_merge($returnarray, array('items' => $subitems));
 	    return $returnarray;
-	}
+	}*/
 }

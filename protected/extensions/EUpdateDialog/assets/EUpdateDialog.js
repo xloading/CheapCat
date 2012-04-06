@@ -83,6 +83,11 @@ var updateDialog = {
       case 'successcategory':
         setTimeout( this.successcategoryCallback, this.timeout );
         break;
+
+     // Callback on successattrgroup
+      case 'successattrgroup':
+        setTimeout( this.successattrgroupCallback, this.timeout );
+        break;
       
       // Callback on delete
       case 'deleted':
@@ -320,8 +325,20 @@ var updateDialog = {
 
 	  // Close UpdateDialog
 	  updateDialog.close();
+  },
+
+  successattrgroupCallback : function() {
+	  if( typeof updateDialog.attrgroupDivUrl !== 'undefined' )
+	  {
+		  $('#content').load(updateDialog.attrgroupDivUrl);
+	  }
+
+	  // Close UpdateDialog
+	  updateDialog.close();
   }
 };
+
+	
 
 /**
  * Open UpdateDialog for clicked link.

@@ -80,14 +80,16 @@ class AjaxMenu extends CMenu {
 		            if(!isset($item['items'])&&($item_type!==2))	{
 		            	$hide_subtabs = '$("table[id|=subtab]").attr("style", "display: none;");';
 		            }
+		            $removeClassClause = ($item_type = 2) ? '' : '$("div.' . $this->activeCssClass . '").addClass("none").removeClass("' . $this->activeCssClass . '");';
 		            $ajax_options['success'] = 
-		                'js: function(data) { $("div.' . $this->activeCssClass . '").addClass("none").removeClass("' . $this->activeCssClass . '");
+		                'js: function(data) { ' . $removeClassClause . '
 		                $("#' . $item['linkOptions']['id'] . '").parent("[id|=toptabdiv]").addClass("' . $this->activeCssClass . '").removeClass("none");
 		                $("td[id|=subtabtd]").filter("[class=current]").removeClass("current"); ' .
 		                $hide_subtabs . '
 		                $("#' . $item['linkOptions']['id'] . '").parent().parent("[id|=subtabtd]").addClass("current");' .
 		                $jquery_method . ' }';
 		        }
+		        //$("div.' . $this->activeCssClass . '").addClass("none").removeClass("' . $this->activeCssClass . '");
 		        //parent().parent().find("#' . $item['linkOptions']['id'] . '").
 		        // creates the ajax link. $item['linkOptions'] should come 2nd in the array_merge.
 		        $linkHtmlOptions = (isset($item['linkOptions']) ? array_merge(array('live'=>false), $item['linkOptions']) : array('live'=>false));
@@ -117,7 +119,7 @@ class AjaxMenu extends CMenu {
 	            $ajax_options['success'] = 
 	                'js: function(data) { $("div.' . $this->activeCssClass . '").addClass("none").removeClass("' . $this->activeCssClass . '");
 	                $("#' . $item['linkOptions']['id'] . '").parent().removeClass("none").addClass("' . $this->activeCssClass . '");
-	                $("table").filter(function(index) {var topTabId = $("div.' . $this->activeCssClass . '").attr("id"); var subTabId = "subtab-"+topTabId.substr(10); return $(this).attr("id") == subTabId;}).attr("style","display: block;").siblings("[id|=subtab]").attr({style: "display: none;", class: "current"});
+	                $("table").filter(function(index) {var topTabId = $("div.' . $this->activeCssClass . '").attr("id"); var subTabId = "subtab-"+topTabId.substr(10); return $(this).attr("id") == subTabId;}).attr("style","display: block;").siblings("[id|=subtab]").attr({style: "display: none;", "class": "current"});
 	                $("td[id|=subtabtd]").filter("[class=current]").removeClass("current");
 		            $("table").filter(function(index) {var topTabId = $("div.' . $this->activeCssClass . '").attr("id"); var subTabId = "subtab-"+topTabId.substr(10); return $(this).attr("id") == subTabId;}).attr("style","display: block;").find("[id|=subtabtd]:first").addClass("current");' .
 	                $jquery_method . ' }';

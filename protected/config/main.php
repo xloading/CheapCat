@@ -61,7 +61,7 @@ return array(
 			'alwaysAllowedPath'=>'srbac.components', // default: srbac.components
 			// must be an existing alias 
 			),
-		
+		'admin'
 	),
 
 	// application components
@@ -80,6 +80,7 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+			'showScriptName' => FALSE,
 		),
 		
 		/*'db'=>array(
@@ -115,20 +116,21 @@ return array(
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
-				array(
+				/*array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
-				),
+				),*/
 				// uncomment the following to show log messages on web pages
 				
 				array(
 					'class'=>'CWebLogRoute',
+					'categories' => 'system.db.CDbCommand',
 				),
 				// -- CProfileLogRoute -------------------------------
                 array(
                     'class'=>'CProfileLogRoute',
-                    'levels'=>'profile',
-                    'enabled'=>true,
+                    //'levels'=>'profile',
+                    //'enabled'=>true,
                 ),
                 // -------------------------------------------------------
                 /*array(
@@ -144,6 +146,23 @@ return array(
             // ImageMagick setup path
             'params'=>array('directory'=>'C:\imagemagick'),
         ),
+        // enables theme based JQueryUI's
+        'widgetFactory' => array(
+            'widgets' => array(
+                'CJuiAutoComplete' => array(
+                    'themeUrl' => '/css/jqueryui',
+                    'theme' => 'redmond',
+                ),
+                'CJuiDialog' => array(
+                    'themeUrl' => '/css/jqueryui',
+                    'theme' => 'redmond',
+                ),
+                'CJuiDatePicker' => array(
+                    'themeUrl' => '/css/jqueryui',
+                    'theme' => 'redmond',
+                ),
+            )
+		),
 	),
 
 	// application-level parameters that can be accessed

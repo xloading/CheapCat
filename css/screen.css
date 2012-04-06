@@ -254,6 +254,67 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	margin-left:300px;
 	border: 2px solid #F5F0BB;
     padding: 10px;
+    /*clear: right;
+    height: 300px;
+    overflow: auto;
+    position: relative;*/
+}
+#grouplist
+{
+	width:300px;
+	float:left;
+	background-color: #F5F0BB;
+}
+#groupdetails{
+	margin-left:300px;
+	border: 2px solid #F5F0BB;
+    padding: 10px;
+}
+#attrs
+{
+	overflow:hidden;	
+}
+#assignedattrs
+{
+	width:200px;
+	float: left;
+}
+#unassignedattrs
+{
+	width:200px;
+	margin-left:250px;
+}
+
+#debugattrs
+{
+	width:100%;
+	color:#088000;
+}
+#supplierlist
+{
+	width:300px;
+	float:left;
+	background-color: #F5F0BB;
+}
+#supplierdetails{
+	margin-left:300px;
+	border: 2px solid #F5F0BB;
+    padding: 10px;
+    /*clear: right;
+    height: 300px;
+    overflow: auto;
+    position: relative;*/
+}
+#supplheader{position:relative;line-height:1em;}
+.filterform {
+  width:220px;
+  font-size:12px;
+  display:block;
+}
+.filterform input {
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-border-radius:5px;
 }
 
 /* niftycorners.css */
@@ -365,3 +426,38 @@ a.update-dialog-open-link {
     vertical-align: 1px;
     color: #597380;
 }
+
+/*
+#attrs { list-style-type: none; margin: 0; padding: 0 0 2.5em; float: left; margin-right: 10px;}
+#attrs li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+#attrlist1 { list-style-type: none; }
+.ui-state-default { list-style-type: none; }
+*/
+
+.placeholder {
+    background-color: #CFCFCF;
+}
+
+ol {
+margin: 0;
+padding: 0;
+padding-left: 30px;
+}
+ol.sortable, ol.sortable ol {
+margin: 0 0 0 25px;
+padding: 0;
+list-style-type: none;
+}
+ol.sortable {
+margin: 4em 0;
+}
+.sortable li {
+margin: 7px 0 0 0;
+padding: 0;
+}
+.sortable li div {
+border: 1px solid black;
+padding: 3px;
+margin: 0;
+cursor: move;
+} 

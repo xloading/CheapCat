@@ -18,7 +18,7 @@
  * @package zii.widgets.jui
  * @since 1.1
  */
-abstract class CJuiWidget extends CWidget
+/*abstract*/ class CJuiWidget extends CWidget
 {
 	/**
 	 * @var string the root URL that contains all JUI JavaScript files.

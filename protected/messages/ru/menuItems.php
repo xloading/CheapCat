@@ -6,6 +6,9 @@ return array (
 	'Feedbacks' => 'Отзывы',
 	'Suppliers' => 'Поставщики',
 	'Brands' => 'Брэнды',
+	'Attributes' => 'Атрибуты',
+	'Categories and attributes' => 'Категории и атрибуты',
+	'Products of suppliers' => 'Продукты поставщика'
 
 );
 ?>

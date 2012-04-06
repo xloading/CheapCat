@@ -50,9 +50,24 @@ class BrandController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if( Yii::app()->request->isAjaxRequest )
+      	{
+			// Stop jQuery from re-initialization
+			Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+			
+			echo CJSON::encode( array(
+				'status' => 'failure',
+				'content' => $this->renderPartial( 'view', array(
+				'model' => $this->loadModel($id) ), true, true ),
+			));
+			exit;
+      	}
+      	else
+      	{
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+      	}
 	}
 
 	/**
@@ -70,12 +85,39 @@ class BrandController extends Controller
 		{
 			$model->attributes=$_POST['Brand'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{
+				if( Yii::app()->request->isAjaxRequest )
+				{
+					// Stop jQuery from re-initialization
+					Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+				
+					echo CJSON::encode( array(
+				    	'status' => 'success',
+						'content' => 'Brand successfully created',
+					));
+					exit;
+				}
+				else
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		if( Yii::app()->request->isAjaxRequest )
+		{
+			// Stop jQuery from re-initialization
+			Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+		
+			echo CJSON::encode( array(
+				'status' => 'failure',
+				'content' => $this->renderPartial( '_form', array(
+				'model' => $model ), true, true ),
+			));
+			exit;
+		}
+		else
+			$this->render('create',array(
+				'model'=>$model,
+			));
 	}
 
 	/**

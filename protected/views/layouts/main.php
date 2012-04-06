@@ -15,6 +15,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" /> -->
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<script src="/js/jquery.pjax.js"></script>
 </head>
 
 <body>
@@ -31,6 +32,7 @@
 					array(
 						array('label'=>Yii::t('menuItems','Products and Categories'), 'url'=>array('/productcategory/admin'), 'visible'=>UserModule::isAdmin()),
 						array('label'=>Yii::t('menuItems','Brands'), 'url'=>array('/brand/admin'), 'visible'=>UserModule::isAdmin()),
+						array('label'=>Yii::t('menuItems','Attributes'), 'url'=>array('/attributegroup/admin'), 'visible'=>UserModule::isAdmin()),
 						array('label'=>Yii::t('menuItems','Feedbacks'), 'url'=>array('/productfeedback/admin'), 'visible'=>UserModule::isAdmin()),
 					),
 					//'ajax' => False
