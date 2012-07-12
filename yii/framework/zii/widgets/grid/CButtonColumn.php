@@ -270,7 +270,7 @@ EOD;
 			{
 				$function=CJavaScript::encode($button['click']);
 				$class=preg_replace('/\s+/','.',$button['options']['class']);
-				$js[]="if(jQuery('body').attr('eventsAreSet') !== 'yes'){jQuery('body').attr('eventsAreSet', 'yes');jQuery('#{$this->grid->id} a.{$class}').live('click',$function);}";
+				$js[]="jQuery('#{$this->grid->id} a.{$class}').live('click',$function);";
 			}
 		}
 

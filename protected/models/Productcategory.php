@@ -98,8 +98,18 @@ class Productcategory extends CActiveRecord
 	}
 	
 	public function behaviors(){
-          return array( 'CAdvancedArBehavior' => array(
-            'class' => 'application.extensions.CAdvancedArBehavior'));
+		return array(
+			'CAdvancedArBehavior' => array(
+				'class' => 'application.extensions.CAdvancedArBehavior'
+			),
+			'nestedSetBehavior'=>array(
+				'class'=>'application.extensions.trees.NestedSetBehavior',
+				'leftAttribute'=>'lft',
+				'rightAttribute'=>'rgt',
+				'levelAttribute'=>'depth',
+				'rootAttribute'=>'root',
+			)
+		);
 	}
 	/*public function getListed() {
 	    $subitems = array();

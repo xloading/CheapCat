@@ -30,8 +30,9 @@ foreach ($attrgrouplist as $attrGroup) {
                         break;
 					case 4: //decimal
 						echo CHtml::textField(
-                                'Product[attr][normal][' . $attr->id . ']', $model->findAttrValue($attr), array(
-                                'size' => '10',
+							'Product[attr][normal][' . $attr->id . ']', $model->findAttrValue($attr), array(
+							'size' => '10',
+						
                         ));
                         break;
 					case 5: //string from list
@@ -54,6 +55,37 @@ foreach ($attrgrouplist as $attrGroup) {
                                 'size' => '10',
                         ));
                         break;
+					case 7: //text
+						$this->widget('application.extensions.tiny_mce.TinyMCE', array(
+						    //'model'=>Productattrvalue::model()->findByAttributes(array('product_id' => $model->id, 'attr_id' => $attr->id)), //$model->findAttrValue($attr),
+							'value' => $model->findAttrValue($attr),
+							//'attribute'=>'value',
+						    'name'=>'Product[attr][normal][' . $attr->id . ']',
+							//'editorTemplate'=>'full',
+						    'editorOptions'=>array(
+								'mode' =>'none',
+						        'language'=>'ru',
+						        'width'=>'600px',
+						        'height'=>'150px',
+								'plugins'=>'safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template',
+						        'theme'=>'advanced',
+						        'theme_advanced_buttons1'=>'save,newdocument,print,|,cut,copy,paste,pastetext,pasteword,|,search,replace,|,undo,redo,|,removeformat,cleanup,|,spellchecker,|,visualaid,visualchars,|,ltr,rtl,|,code,preview,fullscreen,|,help',
+						        'theme_advanced_buttons2'=>'formatselect,fontselect,fontsizeselect,|,forecolor,backcolor,|,bold,italic,underline,strikethrough,|,sub,sup',
+						        'theme_advanced_buttons3'=>'justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,|,hr,advhr,nonbreaking,pagebreak,blockquote,|,charmap,emotions,media,image,|,link,unlink,anchor,|,insertdate,inserttime',
+						        'theme_advanced_buttons4'=>'tablecontrols,|,insertlayer,moveforward,movebackward,absolute,|,styleprops,del,ins,attribs,|,template',
+						        'theme_advanced_toolbar_location'=>'top',
+						        'theme_advanced_toolbar_align'=>'left',
+						        'theme_advanced_statusbar_location'=>'bottom',
+						        'theme_advanced_path'=>false,
+						        'theme_advanced_resizing'=>false,
+						        'theme_advanced_path_location'=>'none',
+						        'force_br_newlines'=>true,
+						        'force_p_newlines'=>false,
+						        'forced_root_block'=>'',
+						    ),
+						));
+						break;
+
                 }
                 //echo $form->labelEx($attr,'dimension');
                 echo '<br>';

@@ -47,9 +47,9 @@ class Supplier extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, address, url, description', 'required'),
-			array('ogrn, juridicaddress', 'numerical', 'integerOnly'=>true),
+			array('ogrn', 'numerical', 'integerOnly'=>true),
 			array('name, url', 'length', 'max'=>100),
-			array('address, juridicname', 'length', 'max'=>200),
+			array('address, juridicname, juridicaddress', 'length', 'max'=>200),
 			array('description', 'length', 'max'=>16000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

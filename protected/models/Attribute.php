@@ -141,7 +141,13 @@ class Attribute extends CActiveRecord
 				return Yii::t('labels','decimal');
 				break;
 			case 5:
-				return Yii::t('labels','attrlist');
+				return Yii::t('labels','string from list');
+				break;
+			case 6:
+				return Yii::t('labels','integer from list');
+				break;
+			case 7:
+				return Yii::t('labels','text');
 				break;
 		}
 	}

@@ -22,6 +22,7 @@ return array(
 		'application.modules.user.*',
 		'application.modules.user.models.*',
         'application.modules.user.components.*',
+		'ext.editMe.helpers.ExtEditMeHelper',
 	),
 
 	'modules'=>array(
@@ -95,6 +96,8 @@ return array(
 			'password' => '',
 			'charset' => 'utf8',
 			'tablePrefix'=>'',
+			'enableProfiling' => true,
+			'enableParamLogging' => true,
 		),
 		'authManager'=>array(
 			// Path to SDbAuthManager in srbac module if you want to use case insensitive
@@ -122,10 +125,10 @@ return array(
 				),*/
 				// uncomment the following to show log messages on web pages
 				
-				array(
+				/*array(
 					'class'=>'CWebLogRoute',
 					'categories' => 'system.db.CDbCommand',
-				),
+				),*/
 				// -- CProfileLogRoute -------------------------------
                 array(
                     'class'=>'CProfileLogRoute',
@@ -162,6 +165,15 @@ return array(
                     'theme' => 'redmond',
                 ),
             )
+		),
+		'cache' => array(
+				'class' => 'CMemCache',
+				//'class' => 'ext.redis.CRedisCache',
+				//'useMemcached'=>true,
+				'servers' => array(
+					array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 60),
+				),
+//				'class' => 'system.caching.CDummyCache',
 		),
 	),
 

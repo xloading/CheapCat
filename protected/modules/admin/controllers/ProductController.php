@@ -35,7 +35,7 @@ class ProductController extends CAdminController
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','admincategoryproducts','uploadimage','updateimage','attrlist','productsbycategorylist'),
+				'actions'=>array('admin','delete','admincategoryproducts','uploadimage','uploadmanual','updateimage','updatemanual','attrlist','productsbycategorylist'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -86,17 +86,21 @@ class ProductController extends CAdminController
 			$model->attributes=$_POST['Product'];
 			
 			// \/ Process image \/
-			$image = Yii::app()->image->load(Yii::getPathOfAlias('webroot').'/upload/'.$model->largepic);
-			$imageName = $model->genImageName();
-			$image->resize(200, 200, IMAGE::AUTO)->quality(75)->sharpen(20);
-			$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/large/'.$imageName), False);
-			$image->resize(100, 100, IMAGE::AUTO)->quality(75)->sharpen(20);
-			$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/small/'.$imageName), False);
-			$model->largepic = CHtml::normalizeUrl('/images/products/large/'.$imageName);
-			$model->smallpic = CHtml::normalizeUrl('/images/products/small/'.$imageName);
+			if(isset($model->largepic)&&strlen($model->largepic)!==0) {
+				$image = Yii::app()->image->load(Yii::getPathOfAlias('webroot').'/upload/'.$model->largepic);
+				$imageName = $model->genImageName();
+				$image->resize(200, 200, IMAGE::AUTO)->quality(75)->sharpen(20);
+				$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/large/'.$imageName), False);
+				$image->resize(100, 100, IMAGE::AUTO)->quality(75)->sharpen(20);
+				$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/small/'.$imageName), False);
+				$model->largepic = CHtml::normalizeUrl('/images/products/large/'.$imageName);
+				$model->smallpic = CHtml::normalizeUrl('/images/products/small/'.$imageName);
+			}
 			// /\ Process image /\
 			
 			if($model->save())	{
+				//Create new row in product_views
+				$model->SaveViews();
 				
 				$model->SaveAttrs($_POST['Product']['attr']);
 
@@ -348,6 +352,19 @@ class ProductController extends CAdminController
                 echo $result;// it's array
 	}
 	
+	public function actionUploadManual()
+	{
+	        Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+                $folder=Yii::getPathOfAlias('webroot').'/upload/';// folder for uploaded files
+                $allowedExtensions = array("pdf","doc","docx");//array("jpg","jpeg","gif","exe","mov" and etc...
+                $sizeLimit = 10 * 1024 * 1024;// maximum file size in bytes
+                $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+                $result = $uploader->handleUpload($folder);
+                $result=htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+                echo $result;// it's array
+	}
+	
 	public function actionUpdateImage()
 	{
 	        Yii::import("ext.EAjaxUpload.qqFileUploader");
@@ -368,6 +385,19 @@ class ProductController extends CAdminController
 				$model->smallpic = CHtml::normalizeUrl('/images/products/small/'.$imageName);
                 $result['smallpic'] = $model->smallpic;
                 $result['largepic'] = $model->largepic;
+				$result=htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+                echo $result;// it's array
+	}
+	
+	public function actionUpdateManual()
+	{
+	        Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+                $folder=Yii::getPathOfAlias('webroot').'/upload/';// folder for uploaded files
+                $allowedExtensions = array("pdf","doc","docx");//array("jpg","jpeg","gif","exe","mov" and etc...
+                $sizeLimit = 10 * 1024 * 1024;// maximum file size in bytes
+                $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+                $result = $uploader->handleUpload($folder);
 				$result=htmlspecialchars(json_encode($result), ENT_NOQUOTES);
                 echo $result;// it's array
 	}

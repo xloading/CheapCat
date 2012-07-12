@@ -138,6 +138,66 @@
 		<?php echo CHTML::activeHiddenField($model,'largepic'); ?>
 		<?php //echo $form->error($model,'uploadedFile'); ?>
 	</div>
+	
+	<div class="row">
+		<?php 
+		if (!isset($model->manual) || trim($model->manual)==='')	{
+			$this->widget('ext.EAjaxUpload.EAjaxUpload',
+                 array(
+                       'id'=>'uploadManual',
+                       'config'=>array(
+                                       'action'=>CHtml::normalizeUrl(array('/product/uploadmanual')),
+                                       'allowedExtensions'=>array("pdf","doc","docx"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                                       'sizeLimit'=>10*1024*1024,// maximum file size in bytes
+                                       //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
+                                       'onComplete'=>'js:function(id, fileName, responseJSON){ if (responseJSON) {$("#Product_manual").val(responseJSON.filename);} }',
+                                       //'messages'=>array(
+                                       //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                       //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                       //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                       //                  'emptyError'=>"{file} is empty, please select files again without it.",
+                                       //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                       //                 ),
+                                       //'showMessage'=>"js:function(message){ alert(message); }"
+                                      )
+                      ));
+		}
+		else	{
+			?>
+			<div id="manual">
+			<?php echo CHTML::link('Manual',$model->manual,array('id'=>'hrefProductManual'));?>
+			</div>
+			<?php 
+			echo CHTML::button('Change Manual',array('id'=>'changeProductManual'));
+			Yii::app()->clientScript->registerScript('chngman_click', "$('#changeProductManual').live('click',function () { $('#updateManual').attr('style','display: block;');});", CClientScript::POS_READY);
+			?>
+			<div id="updateManual" style="display: none;">
+			<?php
+			$this->widget('ext.EAjaxUpload.EAjaxUpload',
+	                 array(
+	                       'id'=>'updateFile',
+	                       'config'=>array(
+	                                       'action'=>CHtml::normalizeUrl(array('/product/updatemanual')),
+	                                       'allowedExtensions'=>array("pdf","doc","docx"),//array("jpg","jpeg","gif","exe","mov" and etc...
+	                                       'sizeLimit'=>10*1024*1024,// maximum file size in bytes
+	                                       //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
+	                                       'onComplete'=>'js:function(id, fileName, responseJSON){ if (responseJSON) {$("#Product_manual").val(responseJSON.filename);} }',
+	                                       //'messages'=>array(
+	                                       //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+	                                       //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+	                                       //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+	                                       //                  'emptyError'=>"{file} is empty, please select files again without it.",
+	                                       //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+	                                       //                 ),
+	                                       //'showMessage'=>"js:function(message){ alert(message); }"
+	                                      )
+	                      ));
+			?>
+			</div>
+			<?php
+			echo CHTML::activeHiddenField($model,'manual');
+		}?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

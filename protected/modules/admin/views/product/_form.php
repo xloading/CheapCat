@@ -48,23 +48,43 @@
 		<?php $this->widget('application.extensions.tiny_mce.TinyMCE', array(
 		    'model'=>$model,
 		    'attribute'=>'description',
+			//'editorTemplate'=>'full',
+			//'useSwitch'=>false,
+			//'useCompression'=>false,
 		    'editorOptions'=>array(
+				'mode' =>'none',
 		        'language'=>'ru',
 		        'width'=>'600px',
 		        'height'=>'150px',
+				'plugins'=>'safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template',
+		        'theme'=>'advanced',
+		        'theme_advanced_buttons1'=>'save,newdocument,print,|,cut,copy,paste,pastetext,pasteword,|,search,replace,|,undo,redo,|,removeformat,cleanup,|,spellchecker,|,visualaid,visualchars,|,ltr,rtl,|,code,preview,fullscreen,|,help',
+				'theme_advanced_buttons2'=>'formatselect,fontselect,fontsizeselect,|,forecolor,backcolor,|,bold,italic,underline,strikethrough,|,sub,sup',
+				'theme_advanced_buttons3'=>'justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,|,hr,advhr,nonbreaking,pagebreak,blockquote,|,charmap,emotions,media,image,|,link,unlink,anchor,|,insertdate,inserttime',
+				'theme_advanced_buttons4'=>'tablecontrols,|,insertlayer,moveforward,movebackward,absolute,|,styleprops,del,ins,attribs,|,template',
+				'theme_advanced_toolbar_location'=>'top',
+		        'theme_advanced_toolbar_align'=>'left',
+		        'theme_advanced_statusbar_location'=>'bottom',
+		        'theme_advanced_path'=>false,
+		        'theme_advanced_resizing'=>false,
+		        'theme_advanced_path_location'=>'none',
+		        'force_br_newlines'=>true,
+		        'force_p_newlines'=>false,
+		        'forced_root_block'=>'',
 		    ),
-		));?>
+		));
+		?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
-
 	<div class="row">
+		<?php echo $form->labelEx($model,'largepic'); ?>
 		<?php 
 		if (!isset($model->smallpic) || trim($model->smallpic)==='')	{
 			$this->widget('ext.EAjaxUpload.EAjaxUpload',
                  array(
                        'id'=>'uploadFile',
                        'config'=>array(
-                                       'action'=>CHtml::normalizeUrl(array('/product/uploadimage')),
+                                       'action'=>CHtml::normalizeUrl(array('/admin/product/uploadimage')),
                                        'allowedExtensions'=>array("jpg"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit'=>1*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
@@ -133,7 +153,7 @@
                  array(
                        'id'=>'updateFile',
                        'config'=>array(
-                                       'action'=>CHtml::normalizeUrl(array('/product/updateimage')),
+                                       'action'=>CHtml::normalizeUrl(array('/admin/product/updateimage')),
                                        'allowedExtensions'=>array("jpg"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit'=>1*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
@@ -156,6 +176,68 @@
 		<?php //echo $form->labelEx($model,'uploadedFile'); ?>
 		<?php echo CHTML::activeHiddenField($model,'largepic'); ?>
 		<?php //echo $form->error($model,'uploadedFile'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'manual'); ?>
+		<?php 
+		if (!isset($model->manual) || trim($model->manual)==='')	{
+			$this->widget('ext.EAjaxUpload.EAjaxUpload',
+                 array(
+                       'id'=>'uploadManual',
+                       'config'=>array(
+                                       'action'=>CHtml::normalizeUrl(array('/admin/product/uploadmanual')),
+                                       'allowedExtensions'=>array("pdf","doc","docx"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                                       'sizeLimit'=>10*1024*1024,// maximum file size in bytes
+                                       //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
+                                       'onComplete'=>'js:function(id, fileName, responseJSON){ if (responseJSON) {$("#Product_manual").val(responseJSON.filename);} }',
+                                       //'messages'=>array(
+                                       //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                       //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                       //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                       //                  'emptyError'=>"{file} is empty, please select files again without it.",
+                                       //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                       //                 ),
+                                       //'showMessage'=>"js:function(message){ alert(message); }"
+                                      )
+                      ));
+		}
+		else	{
+			?>
+			<div id="manual">
+			<?php echo CHTML::link('Manual','upload/'.$model->manual,array('id'=>'hrefProductManual'));?>
+			</div>
+			<?php 
+			echo CHTML::button('Change Manual',array('id'=>'changeProductManual'));
+			Yii::app()->clientScript->registerScript('chngman_click', "$('#changeProductManual').live('click',function () { $('#updateManual').attr('style','display: block;');});", CClientScript::POS_READY);
+			?>
+			<div id="updateManual" style="display: none;">
+			<?php
+			$this->widget('ext.EAjaxUpload.EAjaxUpload',
+	                 array(
+	                       'id'=>'updateManual',
+	                       'config'=>array(
+	                                       'action'=>CHtml::normalizeUrl(array('/admin/product/updatemanual')),
+	                                       'allowedExtensions'=>array("pdf","doc","docx"),//array("jpg","jpeg","gif","exe","mov" and etc...
+	                                       'sizeLimit'=>10*1024*1024,// maximum file size in bytes
+	                                       //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
+	                                       'onComplete'=>'js:function(id, fileName, responseJSON){ if (responseJSON) {$("#Product_manual").val(responseJSON.filename);} }',
+	                                       //'messages'=>array(
+	                                       //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+	                                       //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+	                                       //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+	                                       //                  'emptyError'=>"{file} is empty, please select files again without it.",
+	                                       //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+	                                       //                 ),
+	                                       //'showMessage'=>"js:function(message){ alert(message); }"
+	                                      )
+	                      ));
+			?>
+			</div>
+			<?php
+		}
+		echo CHTML::activeHiddenField($model,'manual');
+		?>
 	</div>
 	
 	<div class="row" id="product-attrs">

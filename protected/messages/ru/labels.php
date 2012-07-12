@@ -11,6 +11,7 @@ return array (
 	'decimal' => 'десятичный',
 	'string from list' => 'строковый список',
 	'integer from list' => 'целочисленный список',
+	'text' => 'текстовый',
 	//Category
     'Edit category' => 'Редактировать категорию',
 	'Delete category' => 'Удалить категорию',

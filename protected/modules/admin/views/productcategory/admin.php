@@ -42,16 +42,18 @@ $this->widget('application.extensions.MTreeView.MTreeView',array(
         //---MTreeView options from here
         'ajaxOptions' => array('update' => '#products'),
         'table'=>'productcategory',//what table the menu would come from
-        'hierModel'=>'adjacency',//hierarchy model of the table
+        'hierModel'=>'nestedSet',//hierarchy model of the table
         //'conditions'=>array('visible=:visible',array(':visible'=>1)),//other conditions if any                                    
         'fields'=>array(//declaration of fields
             'text'=>'name',//no `text` column, use `title` instead
             'alt'=>false,//skip using `alt` column
-            'id_parent'=>'parentid',//no `id_parent` column,use `parent_id` instead
+            //'id_parent'=>'parentid',//no `id_parent` column,use `parent_id` instead
+			'lft'=>'lft',
+			'rgt'=>'rgt',
             'task'=>false,
             'icon'=>false,
 			'tooltip'=>false,
-			'position' => 'name',
+			//'position' => 'name',
             'url'=>array('/admin/product/admincategoryproducts',array('id'=>'id'))
         ),
     ));

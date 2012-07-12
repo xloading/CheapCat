@@ -52,11 +52,11 @@ class Product extends CActiveRecord
 			array('name, description', 'required'),
 			array('categoryid', 'numerical', 'integerOnly'=>true),
 			array('brand_id', 'numerical', 'integerOnly'=>true),
-			array('name, smallpic, largepic', 'length', 'max'=>100),
+			array('name, smallpic, largepic, manual', 'length', 'max'=>100),
 			//array('uploadedFile', 'file', 'types'=>'jpg, gif, png'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, categoryid, description', 'safe', 'on'=>'search'),
+			array('id, name, categoryid, description, avg_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +73,9 @@ class Product extends CActiveRecord
 			'productfeedbacks' => array(self::HAS_MANY, 'Productfeedback', 'productid'),
 			'productrating' => array(self::HAS_ONE, 'Productrating', 'productid'),
 			'brand' => array(self::BELONGS_TO, 'Brand', 'brand_id'),
+			'average_price' => array(self::STAT,'Productbysupplier','productid','select'=>'avg(price)'),
+			'minimum_price' => array(self::STAT,'Productbysupplier','productid','select'=>'min(price)'),
+			'maximum_price' => array(self::STAT,'Productbysupplier','productid','select'=>'max(price)')
 		);
 	}
 
@@ -89,6 +92,8 @@ class Product extends CActiveRecord
 			'description' => 'Description',
 			'smallpic' => 'Smallpic',
 			'largepic' => 'Largepic',
+			'manual' => 'Manual',
+			'avg_price' => 'Average Price',
 		);
 	}
 	
@@ -211,12 +216,14 @@ class Product extends CActiveRecord
         //save product attrs
         if (!isset($data))
             return;
+        //var_dump($data);
         //check exist good features first
         $attrValues = Productattrvalue::model()->findAllByAttributes(array('product_id' => $this->id));
 
         foreach ($attrValues as $attrValue) {
+        	//var_dump($attrValue);
             if (isset($attrValue->attrlistvalue)) {
-                if (($attrValue->attrlistvalue->attr->type == '1')||($attrValue->attrlistvalue->attr->type == '3')) { //if feature is string type
+                if (($attrValue->attrlistvalue->attr->type == '1')||($attrValue->attrlistvalue->attr->type == '5')) { //if feature is string type
                     if (empty($data['normal'][$attrValue->attrlistvalue->attr->id]))
                         $attrValue->delete();
                     elseif ($data['normal'][$attrValue->attrValue->attr->id] !=
@@ -237,11 +244,12 @@ class Product extends CActiveRecord
                         $attrValue->value = $data['normal'][$attrValue->attr->id];
                         $attrValue->save();
                     }
-                } elseif ($attrValue->attr->type == '3') { //if feature is integer type
+                } else /*if ($attrValue->attr->type == '3')*/ { //if feature is integer type
                     if (empty($data['normal'][$attrValue->attr->id]))
                         $attrValue->delete();
                     elseif ($data['normal'][$attrValue->attr->id] != $attrValue->value) {
                         $attrValue->value = $data['normal'][$attrValue->attr->id];
+                        //var_dump($attrValue->value);
                         $attrValue->save();
                     }
                 }
@@ -296,4 +304,51 @@ class Product extends CActiveRecord
             $newFeature = TRUE;
         }
     }
+    
+	/**
+	 * Suggests a list of existing values matching the specified keyword.
+	 * @param string the keyword to be matched
+	 * @param integer maximum number of names to be returned
+	 * @return array list of matching lastnames
+	 */
+	public function suggest($keyword,$limit=20)
+	{
+		$models=$this->findAll(array(
+			'condition'=>'name LIKE :keyword',
+			'order'=>'name',
+			'limit'=>$limit,
+			'params'=>array(':keyword'=>"%$keyword%")
+		));
+		$suggest=array();
+		foreach($models as $model) {
+			$suggest[] = array(
+				'label'=>$model->name,  // label for dropdown list
+				'value'=>$model->name,  // value for input field
+				'id'=>$model->id,       // return values from autocomplete
+			);
+		}
+		return $suggest;
+	}
+	
+	/**
+     * Save product views
+     */
+    public function SaveViews()
+    {
+		$views = new ProductViews;
+		$views->product_id = $this->id;
+		$views->views = 0;
+		$views->save();
+	}
+
+	/**
+	 * Updates product average price
+	 * @param $data array with product attribute values
+	 */
+	public function UpdateAvgMinMaxPrice()
+	{
+		$this->avg_price = $this->average_price;
+		$this->min_price = $this->minimum_price;
+		$this->max_price = $this->maximum_price;
+	}
 }

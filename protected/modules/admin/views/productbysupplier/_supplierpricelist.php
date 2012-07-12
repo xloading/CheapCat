@@ -15,9 +15,23 @@
 </h2>
 <?php
 Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.jeditable.mini.js');
+Yii::app()->clientScript->registerScript('price','
+	$("b[class^=click-]").live("click", function () {
+		$(this).editable("'.$this->createUrl('/admin/productbysupplier/updateprice').'", {
+			submitdata : function (value,settings){
+							return {"Productbysupplier[id]":$(this).attr("class").substr("6"),};
+						},
+	        indicator : "Saving...",
+	        tooltip   : "Click to edit...",
+	      	style  : "inherit",
+	      	name : "Productbysupplier[price]"
+	     });
+	});
+',CClientScript::POS_READY);
 $dataProvider=new CActiveDataProvider('Productbysupplier',array(   
                 'criteria'=>Array(
-                    'select'    =>'category.name as category_name,product.name as product_name,t.price',
+                    'select'    =>'id,category.name as category_name,product.name as product_name,t.price',
                     'with' => array('product','product.category'),
 					//'join'      =>' JOIN  `productcategory` productcategory ON  `product`.`categoryid` =  `productcategory`.`id`',
 					'condition' => 't.supplierid = IFNULL('.$supplier->id.',0)',
@@ -31,7 +45,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'columns'=>array(
 		'product.category.name',
 		'product.name',
-		'price',
+		'price'=> array(
+                'type'=>'raw',
+                'value' => '"<b class=\'click-".$data->id."\'>".$data->price."</b>"',
+                'header' => 'Price'
+        ),
 		array(
 			'class'=>'CButtonColumn',
 			'buttons' => array(

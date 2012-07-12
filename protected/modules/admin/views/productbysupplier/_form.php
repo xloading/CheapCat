@@ -39,7 +39,7 @@
 	<div class="row" id="category-products">
 		<?php
 		if(isset($model->productid)){
-			echo $form->dropDownList($model,'productid',CHTML::listData(Product::model()->findAllByAttributes(array('categoryid' => $category->id)), 'id', 'name'),
+			echo $form->dropDownList($model,'productid',CHTML::listData(Product::model()->findAllByAttributes(array('categoryid' => $categoryId)), 'id', 'name'),
 							array('size'=>1,
 							'options' => array($model->productid => array('selected'=>'selected'))));
 		}

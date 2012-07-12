@@ -36,7 +36,8 @@
 			<?php echo $form->radioButtonList($model, 'type',
 						array('1' => Yii::t('labels','string'), '2' => Yii::t('labels','boolean'),
 							'3' => Yii::t('labels','integer'), '4' => Yii::t('labels','decimal'),
-							'5' => Yii::t('labels','string from list'), '6' => Yii::t('labels','integer from list'),),
+							'5' => Yii::t('labels','string from list'), '6' => Yii::t('labels','integer from list'),
+							'7' => Yii::t('labels','text'),),
 						array('template' => '{label}{input}', 'separator' => '<br>')); ?>
 			<?php echo $form->error($model,'type'); ?>
 		</p>

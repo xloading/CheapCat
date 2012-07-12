@@ -35,7 +35,7 @@ class ProductbysupplierController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','update','delete','adminsupplierproducts'),
+				'actions'=>array('admin','update','delete','adminsupplierproducts','updateprice'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -245,6 +245,29 @@ class ProductbysupplierController extends Controller
 				'supplier'=>$supplier,
 				'products'=>$supplier->productsbysupplier
 			),false,true);
+		}
+	}
+	
+	/**
+	 * Updates price of product for supplier
+	 * @param integer $category_id the ID of category to be displayed
+	 */
+	public function actionUpdatePrice()
+	{
+		if(isset($_POST['Productbysupplier']))
+		{
+			$model = Productbysupplier::model()->findByPk($_POST['Productbysupplier']['id']);
+			if($model===null){
+				throw new CHttpException(404,'The requested page does not exist.');
+			}
+	
+			$model->attributes = $_POST['Productbysupplier'];
+			if($model->save()){
+				$product = Product::model()->findByPk($model->productid);
+				$product->UpdateAvgMinMaxPrice();
+				$product->save();
+				echo $model->price;
+			}
 		}
 	}
 }

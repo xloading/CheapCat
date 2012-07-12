@@ -45,7 +45,7 @@ class Productattrvalue extends CActiveRecord
 		return array(
 			array('product_id, attr_id', 'required'),
 			array('product_id, attr_id, attrlistvalue_id', 'length', 'max'=>10),
-			array('value', 'length', 'max'=>500),
+			array('value', 'length', 'max'=>32000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, product_id, attr_id, attrlistvalue_id, value', 'safe', 'on'=>'search'),
