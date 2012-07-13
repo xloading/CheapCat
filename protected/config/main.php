@@ -23,6 +23,11 @@ return array(
 		'application.modules.user.models.*',
         'application.modules.user.components.*',
 		'ext.editMe.helpers.ExtEditMeHelper',
+		'ext.eoauth.*',
+		'ext.eoauth.lib.*',
+		'ext.lightopenid.*',
+		'ext.eauth.*',
+		'ext.eauth.services.*',
 	),
 
 	'modules'=>array(
@@ -174,6 +179,90 @@ return array(
 					array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 60),
 				),
 //				'class' => 'system.caching.CDummyCache',
+		),
+		'session' => array(
+			'class' => 'system.web.CDBHttpSession',
+			'connectionID' => 'db',
+			'sessionTableName' => 'sessions'
+		),
+		'loid' => array(
+				//alias to dir, where you unpacked extension
+				'class' => 'application.extensions.lightopenid.loid',
+		),
+		'eauth' => array(
+				'class' => 'ext.eauth.EAuth',
+				'popup' => true, // Использовать всплывающее окно вместо перенаправления на сайт провайдера
+				'services' => array( // Вы можете настроить список провайдеров и переопределить их классы
+						/*'google' => array(
+								'class' => 'GoogleOpenIDService',
+						),
+						'yandex' => array(
+								'class' => 'YandexOpenIDService',
+						),
+						'twitter' => array(
+								// регистрация приложения: https://dev.twitter.com/apps/new
+								'class' => 'TwitterOAuthService',
+								'key' => '...',
+								'secret' => '...',
+						),
+						'google_oauth' => array(
+								// регистрация приложения: https://code.google.com/apis/console/
+								'class' => 'GoogleOAuthService',
+								'client_id' => '...',
+								'client_secret' => '...',
+								'title' => 'Google (OAuth)',
+						),
+						'facebook' => array(
+								// регистрация приложения: https://developers.facebook.com/apps/
+								'class' => 'FacebookOAuthService',
+								'client_id' => '...',
+								'client_secret' => '...',
+						),
+						'linkedin' => array(
+								// регистрация приложения: https://www.linkedin.com/secure/developer
+								'class' => 'LinkedinOAuthService',
+								'key' => '...',
+								'secret' => '...',
+						),
+						'github' => array(
+								// регистрация приложения: https://github.com/settings/applications
+								'class' => 'GitHubOAuthService',
+								'client_id' => '...',
+								'client_secret' => '...',
+						),
+						'live' => array(
+								// регистрация приложения: https://manage.dev.live.com/Applications/Index
+								'class' => 'LiveOAuthService',
+								'client_id' => '...',
+								'client_secret' => '...',
+						),*/
+						'vkontakte' => array(
+								// регистрация приложения: http://vkontakte.ru/editapp?act=create&site=1
+								'class' => 'VKontakteOAuthService',
+								'client_id' => '3034717',
+								'client_secret' => 'DEVvb5zigpWVtILsv0gQ',
+						),
+						/*'mailru' => array(
+								// регистрация приложения: http://api.mail.ru/sites/my/add
+								'class' => 'MailruOAuthService',
+								'client_id' => '...',
+								'client_secret' => '...',
+						),
+						'moikrug' => array(
+								// регистрация приложения: https://oauth.yandex.ru/client/my
+								'class' => 'MoikrugOAuthService',
+								'client_id' => '...',
+								'client_secret' => '...',
+						),
+						'odnoklassniki' => array(
+								// регистрация приложения: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
+								'class' => 'OdnoklassnikiOAuthService',
+								'client_id' => '...',
+								'client_public' => '...',
+								'client_secret' => '...',
+								'title' => 'Однокл.',
+						),*/
+				),
 		),
 	),
 

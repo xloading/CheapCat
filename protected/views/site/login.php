@@ -44,6 +44,9 @@ $this->breadcrumbs=array(
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Login'); ?>
 	</div>
+	
+	<h2>Do you already have an account on one of these sites? Click the logo to log in with it here:</h2>
+	<?php Yii::app()->eauth->renderWidget(); ?>
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->

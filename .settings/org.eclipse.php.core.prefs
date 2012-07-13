@@ -1,3 +1,4 @@
-#Sat Feb 25 21:34:06 MSK 2012
 eclipse.preferences.version=1
-include_path=0;/StroykaPrices\u00050;/StroykaPrices/yii/framework
+include_path=0;/StroykaPrices
+phpVersion=php5.3
+use_asp_tags_as_php=false
