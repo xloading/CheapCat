@@ -1,0 +1,24 @@
+.input-search	{
+	width:85%;
+}
+.main_categories:link, .main_categories:visited {
+	font-size: 140%;
+	font-weight: 400;
+	color: #37496D
+}
+.categories__separator {
+	visibility: hidden;
+}
+ul {
+	list-style: none;
+}
+.products_num {
+	color: #8BB204;
+	font-size: 120%;
+	font-weight: bold;
+	margin: 0px 0px 0px 5px;
+}
+.avg_price {
+	font-size: 2.2em;
+	margin: 5px 0px 5px 0px;
+}
