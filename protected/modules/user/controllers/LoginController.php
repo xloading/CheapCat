@@ -9,6 +9,32 @@ class LoginController extends Controller
 	 */
 	public function actionLogin()
 	{
+		$service = Yii::app()->request->getQuery('service');
+		if (isset($service)) {
+			$authIdentity = Yii::app()->eauth->getIdentity($service);
+			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
+			$authIdentity->cancelUrl = $this->createAbsoluteUrl('user/login/login');
+		
+			if ($authIdentity->authenticate()) {
+				$identity = new EAuthUserIdentity($authIdentity);
+		
+				// успешная авторизация
+				if ($identity->authenticate()) {
+					Yii::app()->user->login($identity);
+		
+					// специальное перенаправления для корректного закрытия всплывающего окна
+					$authIdentity->redirect();
+				}
+				else {
+					// закрытие всплывающего окна и перенаправление на cancelUrl
+					$authIdentity->cancel();
+				}
+			}
+		
+			// авторизация не удалась, перенаправляем на страницу входа
+			$this->redirect(array('user/login/login'));
+		}
+		
 		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
 			// collect user input data

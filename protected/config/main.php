@@ -131,7 +131,7 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
-			'tablePrefix'=>'',
+			'tablePrefix'=>'tbl_',
 			'enableProfiling' => true,
 			'enableParamLogging' => true,
 		),
@@ -235,15 +235,15 @@ return array(
 								'class' => 'TwitterOAuthService',
 								'key' => '...',
 								'secret' => '...',
-						),
+						),*/
 						'google_oauth' => array(
 								// регистрация приложения: https://code.google.com/apis/console/
 								'class' => 'GoogleOAuthService',
-								'client_id' => '...',
-								'client_secret' => '...',
+								'client_id' => '45019214517',
+								'client_secret' => 'tGgsuH2eU08SykYzlT7WSFL8',
 								'title' => 'Google (OAuth)',
 						),
-						'facebook' => array(
+						/*'facebook' => array(
 								// регистрация приложения: https://developers.facebook.com/apps/
 								'class' => 'FacebookOAuthService',
 								'client_id' => '...',
