@@ -12,9 +12,10 @@ return array(
 
 	'aliases' => array(
 		'lily' => 'application.modules.lily',
+		'userconnectionwidgets' => 'application.modules.userconnections.widgets', 
 	),
 	// preloading 'log' component
-	'preload'=>array('log','lilyModuleLoader',),
+	'preload'=>array('log','lilyModuleLoader','userConnectionsManager'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -95,6 +96,14 @@ return array(
                 'adminEmail' => 'webmaster@cheapstroy.ru', //Email to put it in mails (From field)
                 'activationTimeout' => 86400, //Timeout, after that activation will be rejected, even if code is clear
             ),
+		),
+		'userConnections' => array(
+			'services' => array(
+				'vkontakte' => array(
+					'appId' => '3034717',
+					'secret' => 'DEVvb5zigpWVtILsv0gQ'
+				),
+			),
 		),
 	),
 
@@ -220,11 +229,11 @@ return array(
 				//alias to dir, where you unpacked extension
 				'class' => 'application.extensions.lightopenid.loid',
 		),
-		'eauth' => array(
+		/*'eauth' => array(
 				'class' => 'ext.eauth.EAuth',
 				'popup' => true, // Использовать всплывающее окно вместо перенаправления на сайт провайдера
 				'services' => array( // Вы можете настроить список провайдеров и переопределить их классы
-						/*'google' => array(
+						'google' => array(
 								'class' => 'GoogleOpenIDService',
 						),
 						'yandex' => array(
@@ -235,7 +244,7 @@ return array(
 								'class' => 'TwitterOAuthService',
 								'key' => '...',
 								'secret' => '...',
-						),*/
+						),
 						'google_oauth' => array(
 								// регистрация приложения: https://code.google.com/apis/console/
 								'class' => 'GoogleOAuthService',
@@ -243,7 +252,7 @@ return array(
 								'client_secret' => 'tGgsuH2eU08SykYzlT7WSFL8',
 								'title' => 'Google (OAuth)',
 						),
-						/*'facebook' => array(
+						'facebook' => array(
 								// регистрация приложения: https://developers.facebook.com/apps/
 								'class' => 'FacebookOAuthService',
 								'client_id' => '...',
@@ -266,14 +275,14 @@ return array(
 								'class' => 'LiveOAuthService',
 								'client_id' => '...',
 								'client_secret' => '...',
-						),*/
+						),
 						'vkontakte' => array(
 								// регистрация приложения: http://vkontakte.ru/editapp?act=create&site=1
 								'class' => 'VKontakteOAuthService',
 								'client_id' => '3034717',
 								'client_secret' => 'DEVvb5zigpWVtILsv0gQ',
 						),
-						/*'mailru' => array(
+						'mailru' => array(
 								// регистрация приложения: http://api.mail.ru/sites/my/add
 								'class' => 'MailruOAuthService',
 								'client_id' => '...',
@@ -292,8 +301,13 @@ return array(
 								'client_public' => '...',
 								'client_secret' => '...',
 								'title' => 'Однокл.',
-						),*/
+						),
 				),
+		),*/
+		'components' => array(
+			'userConnectionsManager' => array(
+				'class' => 'application.modules.userConnections.components.UserConnectionsManager'
+			),
 		),
 		'mail' => array(
 			'class' => 'ext.yii-mail.YiiMail',
