@@ -13,7 +13,7 @@ class LoginController extends Controller
 		if (isset($service)) {
 			$authIdentity = Yii::app()->eauth->getIdentity($service);
 			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
-			$authIdentity->cancelUrl = $this->createAbsoluteUrl('user/login/login');
+			$authIdentity->cancelUrl = $this->createAbsoluteUrl('user/login');
 		
 			if ($authIdentity->authenticate()) {
 				$identity = new EAuthUserIdentity($authIdentity);
@@ -32,7 +32,7 @@ class LoginController extends Controller
 			}
 		
 			// авторизация не удалась, перенаправляем на страницу входа
-			$this->redirect(array('user/login/login'));
+			$this->redirect(array('user/login'));
 		}
 		
 		if (Yii::app()->user->isGuest) {
