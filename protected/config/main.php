@@ -112,11 +112,11 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-			'loginUrl' => array('/lily/user/login'),
+			'loginUrl' => array('/user/login'),
 		),
-		'lilyModuleLoader' => array(
+		/*'lilyModuleLoader' => array(
 			'class' => 'lily.LilyModuleLoader',
-		),
+		),*/
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -140,7 +140,7 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
-			'tablePrefix'=>'tbl_',
+			//'tablePrefix'=>'tbl_',
 			'enableProfiling' => true,
 			'enableParamLogging' => true,
 		),
@@ -319,5 +319,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'xloading@mail.ru',
+		'passwordSalt' => 'kgf234hg2243g3j809'
 	),
 );

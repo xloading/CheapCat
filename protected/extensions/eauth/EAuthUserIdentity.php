@@ -47,6 +47,28 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 			$this->id = $this->service->id;
 			$this->name = $this->service->getAttribute('name');
 			
+			$user = User::model()->findByAttributes(array('identity' => $this->id, 'service' => $this->service->serviceName));
+			if (!$user) {
+				$user = new User();
+				$user->username = md5($this->service->serviceName . $this->service->id);
+				$user->password = md5(Yii::app()->params['passwordSalt'] . uniqid());
+				$user->profile_name = $this->service->getAttribute('name');
+				$user->activkey=UserModule::encrypting(microtime().$model->password);
+				$user->createtime=time();
+				$user->lastvisit=((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin)?time():0;
+				$user->superuser=0;
+				$user->status=1;
+				
+				$user->service = $this->service->serviceName;
+				$user->identity = $this->id;
+			}
+			
+			if ($user->save())	{
+				$identity=new UserIdentity($model->username,$soucePassword);
+				$identity->authenticate();
+				Yii::app()->user->login($identity,0);
+				$this->redirect(Yii::app()->controller->module->returnUrl);
+			}
 			$this->setState('id', $this->id);
 			$this->setState('name', $this->name);
 			$this->setState('service', $this->service->serviceName);
