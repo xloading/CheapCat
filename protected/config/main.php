@@ -229,11 +229,11 @@ return array(
 				//alias to dir, where you unpacked extension
 				'class' => 'application.extensions.lightopenid.loid',
 		),
-		/*'eauth' => array(
+		'eauth' => array(
 				'class' => 'ext.eauth.EAuth',
 				'popup' => true, // Использовать всплывающее окно вместо перенаправления на сайт провайдера
 				'services' => array( // Вы можете настроить список провайдеров и переопределить их классы
-						'google' => array(
+						/*'google' => array(
 								'class' => 'GoogleOpenIDService',
 						),
 						'yandex' => array(
@@ -244,14 +244,14 @@ return array(
 								'class' => 'TwitterOAuthService',
 								'key' => '...',
 								'secret' => '...',
-						),
+						),*/
 						'google_oauth' => array(
 								// регистрация приложения: https://code.google.com/apis/console/
 								'class' => 'GoogleOAuthService',
 								'client_id' => '45019214517',
 								'client_secret' => 'tGgsuH2eU08SykYzlT7WSFL8',
 								'title' => 'Google (OAuth)',
-						),
+						),/*
 						'facebook' => array(
 								// регистрация приложения: https://developers.facebook.com/apps/
 								'class' => 'FacebookOAuthService',
@@ -275,14 +275,14 @@ return array(
 								'class' => 'LiveOAuthService',
 								'client_id' => '...',
 								'client_secret' => '...',
-						),
+						),*/
 						'vkontakte' => array(
 								// регистрация приложения: http://vkontakte.ru/editapp?act=create&site=1
 								'class' => 'VKontakteOAuthService',
 								'client_id' => '3034717',
 								'client_secret' => 'DEVvb5zigpWVtILsv0gQ',
 						),
-						'mailru' => array(
+						/*'mailru' => array(
 								// регистрация приложения: http://api.mail.ru/sites/my/add
 								'class' => 'MailruOAuthService',
 								'client_id' => '...',
@@ -301,9 +301,9 @@ return array(
 								'client_public' => '...',
 								'client_secret' => '...',
 								'title' => 'Однокл.',
-						),
+						),*/
 				),
-		),*/
+		),
 		'components' => array(
 			'userConnectionsManager' => array(
 				'class' => 'application.modules.userConnections.components.UserConnectionsManager'

@@ -9,31 +9,32 @@ class LoginController extends Controller
 	 */
 	public function actionLogin()
 	{
-		$service = Yii::app()->request->getQuery('service');
-		if (isset($service)) {
-			$authIdentity = Yii::app()->eauth->getIdentity($service);
-			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
-			$authIdentity->cancelUrl = $this->createAbsoluteUrl('user/login');
-		
-			if ($authIdentity->authenticate()) {
-				$identity = new EAuthUserIdentity($authIdentity);
-		
-				// успешная авторизация
-				if ($identity->authenticate()) {
-					Yii::app()->user->login($identity);
-		
-					// специальное перенаправления для корректного закрытия всплывающего окна
-					$authIdentity->redirect();
-				}
-				else {
-					// закрытие всплывающего окна и перенаправление на cancelUrl
-					$authIdentity->cancel();
-				}
-			}
-		
-			// авторизация не удалась, перенаправляем на страницу входа
-			$this->redirect(array('user/login'));
-		}
+	$service = Yii::app()->request->getQuery('service');
+        if (isset($service)) {
+            $authIdentity = Yii::app()->eauth->getIdentity($service);
+            Yii::app()->user->setReturnUrl($this->createAbsoluteUrl('login'));
+            $authIdentity->redirectUrl = Yii::app()->user->returnUrl;
+            $authIdentity->cancelUrl = $this->createAbsoluteUrl('login');
+
+            if ($authIdentity->authenticate()) {
+                $identity = new EAuthUserIdentity($authIdentity);
+
+                // successful authentication
+                if ($identity->authenticate()) {
+                    Yii::app()->user->login($identity);
+
+                    // special redirect with closing popup window
+                    $authIdentity->redirect();
+                }
+                else {
+                    // close popup window and redirect to cancelUrl
+                    $authIdentity->cancel();
+                }
+            }
+
+            // Something went wrong, redirect to login page
+            $this->redirect(array('user/login'));
+        }
 		
 		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
