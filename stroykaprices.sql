@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jul 16, 2012 at 10:02 AM
--- Server version: 5.1.40
--- PHP Version: 5.3.3
+-- Хост: 127.0.0.1
+-- Время создания: Июл 19 2012 г., 19:39
+-- Версия сервера: 5.5.25
+-- Версия PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `stroykaprices`
+-- База данных: `stroykaprices`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attribute`
+-- Структура таблицы `attribute`
 --
 
 DROP TABLE IF EXISTS `attribute`;
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `attribute` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `attribute`
+-- Дамп данных таблицы `attribute`
 --
 
 INSERT INTO `attribute` (`id`, `name`, `group_id`, `in_brief`, `type`, `grouporder`, `dimension`, `brieforder`, `in_filter`) VALUES
@@ -60,7 +60,7 @@ INSERT INTO `attribute` (`id`, `name`, `group_id`, `in_brief`, `type`, `groupord
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attributegroup`
+-- Структура таблицы `attributegroup`
 --
 
 DROP TABLE IF EXISTS `attributegroup`;
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `attributegroup` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 --
--- Dumping data for table `attributegroup`
+-- Дамп данных таблицы `attributegroup`
 --
 
 INSERT INTO `attributegroup` (`id`, `parent_id`, `category_id`, `name`, `position`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `attributegroup` (`id`, `parent_id`, `category_id`, `name`, `positio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attrvaluelist`
+-- Структура таблицы `attrvaluelist`
 --
 
 DROP TABLE IF EXISTS `attrvaluelist`;
@@ -105,11 +105,11 @@ CREATE TABLE IF NOT EXISTS `attrvaluelist` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AuthAssignment`
+-- Структура таблицы `authassignment`
 --
 
-DROP TABLE IF EXISTS `AuthAssignment`;
-CREATE TABLE IF NOT EXISTS `AuthAssignment` (
+DROP TABLE IF EXISTS `authassignment`;
+CREATE TABLE IF NOT EXISTS `authassignment` (
   `itemname` varchar(64) NOT NULL,
   `userid` int(11) NOT NULL,
   `bizrule` text,
@@ -119,10 +119,10 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `AuthAssignment`
+-- Дамп данных таблицы `authassignment`
 --
 
-INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
+INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 ('Administrator', 1, '', 's:0:"";'),
 ('Authorizer', 1, '', 's:0:"";'),
 ('User', 1, '', 's:0:"";'),
@@ -131,11 +131,11 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AuthItem`
+-- Структура таблицы `authitem`
 --
 
-DROP TABLE IF EXISTS `AuthItem`;
-CREATE TABLE IF NOT EXISTS `AuthItem` (
+DROP TABLE IF EXISTS `authitem`;
+CREATE TABLE IF NOT EXISTS `authitem` (
   `name` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
   `description` text,
@@ -145,10 +145,10 @@ CREATE TABLE IF NOT EXISTS `AuthItem` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `AuthItem`
+-- Дамп данных таблицы `authitem`
 --
 
-INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
+INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 ('Authorizer', 2, NULL, NULL, NULL),
 ('Administrator', 2, NULL, NULL, NULL),
 ('User', 2, NULL, NULL, NULL),
@@ -162,11 +162,11 @@ INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AuthItemChild`
+-- Структура таблицы `authitemchild`
 --
 
-DROP TABLE IF EXISTS `AuthItemChild`;
-CREATE TABLE IF NOT EXISTS `AuthItemChild` (
+DROP TABLE IF EXISTS `authitemchild`;
+CREATE TABLE IF NOT EXISTS `authitemchild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
   PRIMARY KEY (`parent`,`child`),
@@ -174,10 +174,10 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `AuthItemChild`
+-- Дамп данных таблицы `authitemchild`
 --
 
-INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
+INSERT INTO `authitemchild` (`parent`, `child`) VALUES
 ('Administrator', 'Product Category Management'),
 ('Product Category Management', 'Product Category Create'),
 ('Product Category Management', 'Product Category Delete'),
@@ -189,7 +189,7 @@ INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brand`
+-- Структура таблицы `brand`
 --
 
 DROP TABLE IF EXISTS `brand`;
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `brand`
+-- Дамп данных таблицы `brand`
 --
 
 INSERT INTO `brand` (`id`, `name`) VALUES
@@ -213,7 +213,7 @@ INSERT INTO `brand` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoryattribute`
+-- Структура таблицы `categoryattribute`
 --
 
 DROP TABLE IF EXISTS `categoryattribute`;
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `categoryattribute` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `categoryattribute`
+-- Дамп данных таблицы `categoryattribute`
 --
 
 INSERT INTO `categoryattribute` (`category_id`, `attribute_id`) VALUES
@@ -243,7 +243,7 @@ INSERT INTO `categoryattribute` (`category_id`, `attribute_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Структура таблицы `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -265,18 +265,18 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `product`
+-- Дамп данных таблицы `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `brand_id`, `categoryid`, `description`, `smallpic`, `largepic`, `manual`, `avg_price`, `min_price`, `max_price`) VALUES
-(3, 'Nivoplan', 1, 2, '<p><span style="font-family: arial,helvetica,sans-serif; font-size: small;">Nivoplan&nbsp;- серый или белый порошок, состоящий из цемента, фракционированного песка и синтетических смол.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">При смешивании&nbsp;Nivoplan&nbsp;с водой получается легко наносимый на вертикальные поверхности раствор.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">После схватывания&nbsp;Nivoplan&nbsp;образует плотную штукатурку, устойчивую к влажности и морозу.</span></p>', '/images/products/small/04/WsMjhD6m.jpg', '/images/products/large/04/WsMjhD6m.jpg', 'Infolist_Rotband_Screen57.pdf', 372.50, 367.00, 378.00),
-(4, 'Knauf Унтерпутц', 3, 2, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Штукатурка цементная фасадная КНАУФ-Унтерпутц&nbsp;&mdash; идеальная основа под декоративные покрытия фасадов.</span>\r\n<ul style="margin-top: 0px; margin-bottom: 1em; color: #869197; font-family: Arial,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 14px; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Повышает водоудерживающую способность поверхности.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Пластичность и&nbsp;возможность тонкослойного нанесения раствора.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Смесь не&nbsp;дает усадки и&nbsp;не&nbsp;образует трещин при высыхании.</span></li>\r\n</ul>', '/images/products/small/05/6qFoc81b.jpg', '/images/products/large/05/6qFoc81b.jpg', '', 0.00, 0.00, 0.00),
-(5, 'Юнис (UNIS) Алебастр, 5кг', 4, 7, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 15px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: #ffffff; display: inline ! important; float: none;">Предназначен для ремонтных работ внутри помещений: заполнение трещин, раковин в строительных конструкциях. Изготовление лепных и рельефных деталей. Изготовлен из экологически чистого природного сырья.</span>', NULL, '', '', 0.00, 0.00, 0.00);
+(3, 'Nivoplan', 1, 2, '<p><span style="font-family: arial,helvetica,sans-serif; font-size: small;">Nivoplan&nbsp;- серый или белый порошок, состоящий из цемента, фракционированного песка и синтетических смол.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">При смешивании&nbsp;Nivoplan&nbsp;с водой получается легко наносимый на вертикальные поверхности раствор.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">После схватывания&nbsp;Nivoplan&nbsp;образует плотную штукатурку, устойчивую к влажности и морозу.</span></p>', '/images/products/small/04/WsMjhD6m.jpg', '/images/products/large/04/WsMjhD6m.jpg', 'Infolist_Rotband_Screen57.pdf', '372.50', '367.00', '378.00'),
+(4, 'Knauf Унтерпутц', 3, 2, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Штукатурка цементная фасадная КНАУФ-Унтерпутц&nbsp;&mdash; идеальная основа под декоративные покрытия фасадов.</span>\r\n<ul style="margin-top: 0px; margin-bottom: 1em; color: #869197; font-family: Arial,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 14px; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Повышает водоудерживающую способность поверхности.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Пластичность и&nbsp;возможность тонкослойного нанесения раствора.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Смесь не&nbsp;дает усадки и&nbsp;не&nbsp;образует трещин при высыхании.</span></li>\r\n</ul>', '/images/products/small/05/6qFoc81b.jpg', '/images/products/large/05/6qFoc81b.jpg', '', '0.00', '0.00', '0.00'),
+(5, 'Юнис (UNIS) Алебастр, 5кг', 4, 7, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 15px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: #ffffff; display: inline ! important; float: none;">Предназначен для ремонтных работ внутри помещений: заполнение трещин, раковин в строительных конструкциях. Изготовление лепных и рельефных деталей. Изготовлен из экологически чистого природного сырья.</span>', NULL, '', '', '0.00', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productattrvalue`
+-- Структура таблицы `productattrvalue`
 --
 
 DROP TABLE IF EXISTS `productattrvalue`;
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `productattrvalue` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
--- Dumping data for table `productattrvalue`
+-- Дамп данных таблицы `productattrvalue`
 --
 
 INSERT INTO `productattrvalue` (`id`, `product_id`, `attr_id`, `attrlistvalue_id`, `value`) VALUES
@@ -320,7 +320,7 @@ INSERT INTO `productattrvalue` (`id`, `product_id`, `attr_id`, `attrlistvalue_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productbysupplier`
+-- Структура таблицы `productbysupplier`
 --
 
 DROP TABLE IF EXISTS `productbysupplier`;
@@ -336,17 +336,17 @@ CREATE TABLE IF NOT EXISTS `productbysupplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `productbysupplier`
+-- Дамп данных таблицы `productbysupplier`
 --
 
 INSERT INTO `productbysupplier` (`id`, `supplierid`, `productid`, `price`) VALUES
-(1, 4, 3, 367.00),
-(2, 5, 3, 378.00);
+(1, 4, 3, '367.00'),
+(2, 5, 3, '378.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productcategory`
+-- Структура таблицы `productcategory`
 --
 
 DROP TABLE IF EXISTS `productcategory`;
@@ -365,7 +365,7 @@ CREATE TABLE IF NOT EXISTS `productcategory` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
--- Dumping data for table `productcategory`
+-- Дамп данных таблицы `productcategory`
 --
 
 INSERT INTO `productcategory` (`id`, `parentid`, `lft`, `rgt`, `depth`, `name`, `inherit_attrs_from_parent`) VALUES
@@ -387,7 +387,7 @@ INSERT INTO `productcategory` (`id`, `parentid`, `lft`, `rgt`, `depth`, `name`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productfeedback`
+-- Структура таблицы `productfeedback`
 --
 
 DROP TABLE IF EXISTS `productfeedback`;
@@ -404,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `productfeedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productrating`
+-- Структура таблицы `productrating`
 --
 
 DROP TABLE IF EXISTS `productrating`;
@@ -418,7 +418,21 @@ CREATE TABLE IF NOT EXISTS `productrating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_views`
+-- Структура таблицы `product_alsoviewed`
+--
+
+DROP TABLE IF EXISTS `product_alsoviewed`;
+CREATE TABLE IF NOT EXISTS `product_alsoviewed` (
+  `id_current` int(10) unsigned NOT NULL,
+  `id_possible` int(10) unsigned NOT NULL,
+  `probability` decimal(10,2) NOT NULL DEFAULT '0.00',
+  KEY `id_current` (`id_current`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Will contain matrix of probabilities build "also viewed products" list';
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_views`
 --
 
 DROP TABLE IF EXISTS `product_views`;
@@ -429,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `product_views` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product_views`
+-- Дамп данных таблицы `product_views`
 --
 
 INSERT INTO `product_views` (`product_id`, `views`) VALUES
@@ -440,7 +454,7 @@ INSERT INTO `product_views` (`product_id`, `views`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profiles`
+-- Структура таблицы `profiles`
 --
 
 DROP TABLE IF EXISTS `profiles`;
@@ -453,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `profiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `profiles`
+-- Дамп данных таблицы `profiles`
 --
 
 INSERT INTO `profiles` (`user_id`, `lastname`, `firstname`, `birthday`) VALUES
@@ -463,7 +477,7 @@ INSERT INTO `profiles` (`user_id`, `lastname`, `firstname`, `birthday`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profiles_fields`
+-- Структура таблицы `profiles_fields`
 --
 
 DROP TABLE IF EXISTS `profiles_fields`;
@@ -489,7 +503,7 @@ CREATE TABLE IF NOT EXISTS `profiles_fields` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `profiles_fields`
+-- Дамп данных таблицы `profiles_fields`
 --
 
 INSERT INTO `profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_size`, `field_size_min`, `required`, `match`, `range`, `error_message`, `other_validator`, `default`, `widget`, `widgetparams`, `position`, `visible`) VALUES
@@ -500,7 +514,28 @@ INSERT INTO `profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_si
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Структура таблицы `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` char(32) NOT NULL,
+  `expire` int(11) NOT NULL,
+  `data` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Will store session details as defined by Yii CDBHttpSession';
+
+--
+-- Дамп данных таблицы `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `expire`, `data`) VALUES
+('u6cnrequ7i5riok05gbqo97522', 1342713284, '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `supplier`
 --
 
 DROP TABLE IF EXISTS `supplier`;
@@ -518,7 +553,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `supplier`
+-- Дамп данных таблицы `supplier`
 --
 
 INSERT INTO `supplier` (`id`, `name`, `address`, `url`, `description`, `dateadded`, `juridicname`, `ogrn`, `juridicaddress`) VALUES
@@ -529,7 +564,7 @@ INSERT INTO `supplier` (`id`, `name`, `address`, `url`, `description`, `dateadde
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplierfeedback`
+-- Структура таблицы `supplierfeedback`
 --
 
 DROP TABLE IF EXISTS `supplierfeedback`;
@@ -546,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `supplierfeedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplierrating`
+-- Структура таблицы `supplierrating`
 --
 
 DROP TABLE IF EXISTS `supplierrating`;
@@ -561,7 +596,7 @@ CREATE TABLE IF NOT EXISTS `supplierrating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lily_account`
+-- Структура таблицы `tbl_lily_account`
 --
 
 DROP TABLE IF EXISTS `tbl_lily_account`;
@@ -575,12 +610,22 @@ CREATE TABLE IF NOT EXISTS `tbl_lily_account` (
   `created` int(11) DEFAULT NULL,
   PRIMARY KEY (`aid`),
   UNIQUE KEY `service_id` (`service`,`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `tbl_lily_account`
+--
+
+INSERT INTO `tbl_lily_account` (`aid`, `uid`, `service`, `id`, `hidden`, `data`, `created`) VALUES
+(1, 1, 'onetime', '1', 0, 0x4e3b, 1342422486),
+(2, 1, 'vkontakte', '13437480', 0, 0x4f3a383a22737464436c617373223a333a7b733a323a226964223b693a31333433373438303b733a343a226e616d65223b733a33333a22d093d0b5d0bed180d0b3d0b8d0b920d09dd0b5d0bfd0bed182d0b0d187d0b5d0b2223b733a333a2275726c223b733a33303a22687474703a2f2f766b6f6e74616b74652e72752f69643133343337343830223b7d, 1342422487),
+(3, 2, 'onetime', '2', 0, 0x4e3b, 1342424566),
+(4, 2, 'google_oauth', '116516908996477708118', 0, 0x4f3a383a22737464436c617373223a333a7b733a323a226964223b733a32313a22313136353136393038393936343737373038313138223b733a343a226e616d65223b733a31373a2247656f726765204e65706f746163686576223b733a333a2275726c223b733a34353a2268747470733a2f2f706c75732e676f6f676c652e636f6d2f313136353136393038393936343737373038313138223b7d, 1342424566);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lily_email_account_activation`
+-- Структура таблицы `tbl_lily_email_account_activation`
 --
 
 DROP TABLE IF EXISTS `tbl_lily_email_account_activation`;
@@ -597,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `tbl_lily_email_account_activation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lily_onetime`
+-- Структура таблицы `tbl_lily_onetime`
 --
 
 DROP TABLE IF EXISTS `tbl_lily_onetime`;
@@ -612,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `tbl_lily_onetime` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lily_session`
+-- Структура таблицы `tbl_lily_session`
 --
 
 DROP TABLE IF EXISTS `tbl_lily_session`;
@@ -629,7 +674,7 @@ CREATE TABLE IF NOT EXISTS `tbl_lily_session` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lily_user`
+-- Структура таблицы `tbl_lily_user`
 --
 
 DROP TABLE IF EXISTS `tbl_lily_user`;
@@ -639,12 +684,20 @@ CREATE TABLE IF NOT EXISTS `tbl_lily_user` (
   `active` tinyint(1) DEFAULT NULL,
   `inited` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `tbl_lily_user`
+--
+
+INSERT INTO `tbl_lily_user` (`uid`, `deleted`, `active`, `inited`) VALUES
+(1, 0, 1, 0),
+(2, 0, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_migration`
+-- Структура таблицы `tbl_migration`
 --
 
 DROP TABLE IF EXISTS `tbl_migration`;
@@ -655,7 +708,7 @@ CREATE TABLE IF NOT EXISTS `tbl_migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_migration`
+-- Дамп данных таблицы `tbl_migration`
 --
 
 INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
@@ -665,12 +718,12 @@ INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -679,6 +732,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastvisit` int(10) NOT NULL DEFAULT '0',
   `superuser` int(1) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '0',
+  `service` varchar(255) DEFAULT NULL,
+  `identity` varchar(255) DEFAULT NULL,
+  `profile_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
@@ -687,51 +743,67 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `users`
+-- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'xloading@mail.ru', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1341432858, 1, 1),
-(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 1321171929, 0, 1);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`, `service`, `identity`, `profile_name`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'xloading@mail.ru', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1341432858, 1, 1, NULL, NULL, NULL),
+(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 1321171929, 0, 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
 
 --
--- Constraints for dumped tables
+-- Структура таблицы `user_connections`
+--
+
+DROP TABLE IF EXISTS `user_connections`;
+CREATE TABLE IF NOT EXISTS `user_connections` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `service_user_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Connections for userConnections module' AUTO_INCREMENT=1 ;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `attribute`
+-- Ограничения внешнего ключа таблицы `attribute`
 --
 ALTER TABLE `attribute`
   ADD CONSTRAINT `attribute_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `attributegroup` (`id`);
 
 --
--- Constraints for table `attributegroup`
+-- Ограничения внешнего ключа таблицы `attributegroup`
 --
 ALTER TABLE `attributegroup`
   ADD CONSTRAINT `attributegroup_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `attributegroup` (`id`);
 
 --
--- Constraints for table `attrvaluelist`
+-- Ограничения внешнего ключа таблицы `attrvaluelist`
 --
 ALTER TABLE `attrvaluelist`
   ADD CONSTRAINT `attrvaluelist_ibfk_1` FOREIGN KEY (`attr_id`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `categoryattribute`
+-- Ограничения внешнего ключа таблицы `categoryattribute`
 --
 ALTER TABLE `categoryattribute`
   ADD CONSTRAINT `categoryattribute_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `productcategory` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `categoryattribute_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product`
+-- Ограничения внешнего ключа таблицы `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`categoryid`) REFERENCES `productcategory` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `productattrvalue`
+-- Ограничения внешнего ключа таблицы `productattrvalue`
 --
 ALTER TABLE `productattrvalue`
   ADD CONSTRAINT `productattrvalue_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -739,47 +811,53 @@ ALTER TABLE `productattrvalue`
   ADD CONSTRAINT `productattrvalue_ibfk_3` FOREIGN KEY (`attrlistvalue_id`) REFERENCES `attrvaluelist` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `productbysupplier`
+-- Ограничения внешнего ключа таблицы `productbysupplier`
 --
 ALTER TABLE `productbysupplier`
   ADD CONSTRAINT `productbysupplier_ibfk_1` FOREIGN KEY (`supplierid`) REFERENCES `supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productbysupplier_ibfk_3` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `productcategory`
+-- Ограничения внешнего ключа таблицы `productcategory`
 --
 ALTER TABLE `productcategory`
   ADD CONSTRAINT `productcategory_ibfk_1` FOREIGN KEY (`parentid`) REFERENCES `productcategory` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `productfeedback`
+-- Ограничения внешнего ключа таблицы `productfeedback`
 --
 ALTER TABLE `productfeedback`
   ADD CONSTRAINT `productfeedback_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `productrating`
+-- Ограничения внешнего ключа таблицы `productrating`
 --
 ALTER TABLE `productrating`
   ADD CONSTRAINT `productrating_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_views`
+-- Ограничения внешнего ключа таблицы `product_views`
 --
 ALTER TABLE `product_views`
   ADD CONSTRAINT `product_views_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `supplierfeedback`
+-- Ограничения внешнего ключа таблицы `supplierfeedback`
 --
 ALTER TABLE `supplierfeedback`
   ADD CONSTRAINT `supplierfeedback_ibfk_1` FOREIGN KEY (`supplierid`) REFERENCES `supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `supplierrating`
+-- Ограничения внешнего ключа таблицы `supplierrating`
 --
 ALTER TABLE `supplierrating`
   ADD CONSTRAINT `supplierrating_ibfk_1` FOREIGN KEY (`supplierid`) REFERENCES `supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `user_connections`
+--
+ALTER TABLE `user_connections`
+  ADD CONSTRAINT `user_connections_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

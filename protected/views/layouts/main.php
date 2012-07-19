@@ -48,6 +48,12 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span3">
+		<?php 
+		if(Yii::app()->user->isGuest)
+		{
+			$this->widget('application.modules.user.components.LoginWidget');
+		}
+		?>
 		</div>
 		<div class="span7">
 			<div class="row-fluid">
