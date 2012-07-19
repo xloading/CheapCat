@@ -50,8 +50,9 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 			$user = User::model()->findByAttributes(array('identity' => $this->id, 'service' => $this->service->serviceName));
 			if (!$user) {
 				$user = new User();
-				$user->username = md5($this->service->serviceName . $this->service->id);
+				$user->username = substr(md5($this->service->serviceName . $this->service->id),0,20);
 				$user->password = md5(Yii::app()->params['passwordSalt'] . uniqid());
+				$user->email = 'na@na.com';
 				$user->profile_name = $this->service->getAttribute('name');
 				$user->activkey=UserModule::encrypting(microtime().$model->password);
 				$user->createtime=time();
@@ -68,6 +69,9 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 				$identity->authenticate();
 				Yii::app()->user->login($identity,0);
 				$this->redirect(Yii::app()->controller->module->returnUrl);
+			}
+			else {
+				var_dump($user->getErrors());
 			}
 			$this->setState('id', $this->id);
 			$this->setState('name', $this->name);
