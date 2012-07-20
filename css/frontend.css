@@ -34,11 +34,24 @@ ul {
 	margin: 0 auto;
 	float: none;
 }
-.sidebar-nav{
+
+#logo{
     width:200px;
-    padding: 0 70px;
 }
 
-.row-fluid > .span-fixed-sidebar {
-    margin-left: 290px;
+#sidebar-nav-fixed{
+    width:200px;
+}
+
+.contentwrapper{
+	float:left;
+}
+
+.mainright{
+	margin-left:250px;
+	height:100%;
+}
+
+.mainabs{
+	position:absolute;
 }

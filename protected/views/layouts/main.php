@@ -25,8 +25,8 @@
 
 <body>
 <div class="container-fluid fill">
-	<div class="row-fluid">
-		<div class="span2">
+	<div class="row-fluid contentwrapper">
+		<div class="span2" id="logo">
 		</div>
 		<div class="span8">
 			<form class="well form-search">
@@ -45,10 +45,11 @@
 			<button type="submit" class="btn btn-primary">Найти</button>
 			</form>
 		</div>
-	</div>
-	<div class="row-fluid">
 		<div class="span2">
-		<div class="sidebar-nav sidebar-nav-fixed">
+		</div>
+	</div>
+	<div class="row-fluid contentwrapper">
+		<div class="span2" id="sidebar-nav-fixed">
 		<?php 
 		if(Yii::app()->user->isGuest)
 		{
@@ -56,16 +57,14 @@
 		}
 		?>
 		</div>
-		</div>
 		<div class="span8">
 			<div class="row-fluid">
 			<?php echo $content; ?>
 			</div>
 		</div>
+		<div class="span2">
+		</div>
 	</div>
-</td>
-<td class="settings"></td>
-</tr>
-</table>
+</div>
 </body>
 </html>
