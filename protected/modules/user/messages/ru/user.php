@@ -124,5 +124,7 @@ return array(
 	'The value of the default field (database).' => 'Значение поля по умолчанию (база данных).',
 	'Display order of fields.' => 'Порядок отображения полей.',
 	'Not visited' => 'Не входил',
+	//My own messages
+	'Enter using' => 'Войти при помощи',
 );
 

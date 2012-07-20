@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -24,11 +24,11 @@
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container-fluid fill">
 	<div class="row-fluid">
-		<div class="span3">
+		<div class="span2">
 		</div>
-		<div class="span7">
+		<div class="span8">
 			<form class="well form-search">
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 			    //'model'=>$model,
@@ -47,7 +47,8 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span3">
+		<div class="span2">
+		<div class="sidebar-nav sidebar-nav-fixed">
 		<?php 
 		if(Yii::app()->user->isGuest)
 		{
@@ -55,7 +56,8 @@
 		}
 		?>
 		</div>
-		<div class="span7">
+		</div>
+		<div class="span8">
 			<div class="row-fluid">
 			<?php echo $content; ?>
 			</div>

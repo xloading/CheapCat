@@ -1,16 +1,16 @@
 <?php echo CHtml::beginForm('','post',array('class'=>'well')); ?>
 	<div class="centered-text">
 	<?php echo CHtml::errorSummary($model); ?>
-	<?php echo CHtml::activeTextField($model,'username',array('class'=>'span6','placeholder'=>UserModule::t("username"))) ?>
-	<?php echo CHtml::activePasswordField($model,'password',array('class'=>'span6','placeholder'=>UserModule::t("password"))) ?>
-	<label class='checkbox'>
-	<?php echo CHtml::activeCheckBox($model,'rememberMe'); ?>
+	<?php echo CHtml::activeTextField($model,'username',array('class'=>'input-small','placeholder'=>UserModule::t("username"))) ?><br>
+	<?php echo CHtml::activePasswordField($model,'password',array('class'=>'input-small','placeholder'=>UserModule::t("password"))) ?>
+	<label>
+	<?php echo CHtml::activeCheckBox($model,'rememberMe',array('class'=>'checkbox')); ?>
 	<?php $modelLabels = $model->attributeLabels();
 		echo $modelLabels['rememberMe']; ?> 
 	</label>
 	<?php echo CHtml::submitButton(UserModule::t("Login"),array('class'=>'btn')); ?>
 	<span class='help-block'>
-	Enter using
+	<?php echo UserModule::t('Enter using'); ?>
 	</span>
 	<?php 
 	    $this->widget('ext.eauth.EAuthWidget', array('action' => 'login'));
