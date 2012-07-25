@@ -12,10 +12,9 @@ return array(
 
 	'aliases' => array(
 		'lily' => 'application.modules.lily',
-		'userconnectionwidgets' => 'application.modules.userconnections.widgets', 
 	),
 	// preloading 'log' component
-	'preload'=>array('log','lilyModuleLoader','userConnectionsManager'),
+	'preload'=>array('log','lilyModuleLoader',),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -97,14 +96,6 @@ return array(
                 'activationTimeout' => 86400, //Timeout, after that activation will be rejected, even if code is clear
             ),
 		),
-		'userConnections' => array(
-			'services' => array(
-				'vkontakte' => array(
-					'appId' => '3034717',
-					'secret' => 'DEVvb5zigpWVtILsv0gQ'
-				),
-			),
-		),
 	),
 
 	// application components
@@ -112,11 +103,11 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-			'loginUrl' => array('/user/login'),
+			'loginUrl' => array('/lily/user/login'),
 		),
-		/*'lilyModuleLoader' => array(
+		'lilyModuleLoader' => array(
 			'class' => 'lily.LilyModuleLoader',
-		),*/
+		),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -140,7 +131,7 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
-			//'tablePrefix'=>'tbl_',
+			'tablePrefix'=>'tbl_',
 			'enableProfiling' => true,
 			'enableParamLogging' => true,
 		),
@@ -251,8 +242,8 @@ return array(
 								'client_id' => '45019214517',
 								'client_secret' => 'tGgsuH2eU08SykYzlT7WSFL8',
 								'title' => 'Google (OAuth)',
-						),/*
-						'facebook' => array(
+						),
+						/*'facebook' => array(
 								// регистрация приложения: https://developers.facebook.com/apps/
 								'class' => 'FacebookOAuthService',
 								'client_id' => '...',
@@ -304,11 +295,6 @@ return array(
 						),*/
 				),
 		),
-		'components' => array(
-			'userConnectionsManager' => array(
-				'class' => 'application.modules.userConnections.components.UserConnectionsManager'
-			),
-		),
 		'mail' => array(
 			'class' => 'ext.yii-mail.YiiMail',
 		),
@@ -319,6 +305,5 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'xloading@mail.ru',
-		'passwordSalt' => 'kgf234hg2243g3j809'
 	),
 );
