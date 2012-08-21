@@ -27,7 +27,12 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 	/**
 	 * @var string the display name for the identity.
 	 */
-	protected $name;
+	public $serviceName;
+	public $name;
+	protected $firstName;
+	protected $email;
+	protected $mobilePhone;
+	protected $homePhone;
 	
 	/**
 	 * Constructor.
@@ -35,6 +40,7 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 	 */
 	public function __construct($service) {
 		$this->service = $service;
+		$this->serviceName = $service->name;
 	}
 	
 	/**
@@ -43,39 +49,22 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate() {		
-		if ($this->service->isAuthenticated) {
+	if ($this->service->isAuthenticated) {
 			$this->id = $this->service->id;
 			$this->name = $this->service->getAttribute('name');
 			
-			$user = User::model()->findByAttributes(array('identity' => $this->id, 'service' => $this->service->serviceName));
-			if (!$user) {
-				$user = new User();
-				$user->username = substr(md5($this->service->serviceName . $this->service->id),0,20);
-				$user->password = md5(Yii::app()->params['passwordSalt'] . uniqid());
-				$user->email = 'na@na.com';
-				$user->profile_name = $this->service->getAttribute('name');
-				$user->activkey=UserModule::encrypting(microtime().$model->password);
-				$user->createtime=time();
-				$user->lastvisit=((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin)?time():0;
-				$user->superuser=0;
-				$user->status=1;
-				
-				$user->service = $this->service->serviceName;
-				$user->identity = $this->id;
-			}
+			$this->firstName = $this->service->getAttribute('firstName');
+			$this->email = $this->service->getAttribute('email');
+			$this->mobilePhone = $this->service->getAttribute('mobilePhone');
+			$this->homePhone = $this->service->getAttribute('homePhone');
 			
-			if ($user->save())	{
-				$identity=new UserIdentity($model->username,$soucePassword);
-				$identity->authenticate();
-				Yii::app()->user->login($identity,0);
-				$this->redirect(Yii::app()->controller->module->returnUrl);
-			}
-			else {
-				var_dump($user->getErrors());
-			}
-			$this->setState('id', $this->id);
-			$this->setState('name', $this->name);
+			/*$this->setState('id', $this->id);
 			$this->setState('service', $this->service->serviceName);
+			
+			$this->setState('firstName', $this->firstName);
+			$this->setState('email', $this->email);
+			$this->setState('mobile_phone', $this->mobilePhone);
+			$this->setState('home_phone', $this->homePhone);*/
 			
 			$this->errorCode = self::ERROR_NONE;		
 		}
@@ -101,5 +90,21 @@ class EAuthUserIdentity extends CBaseUserIdentity {
 	 */
 	public function getName() {
 		return $this->name;
+	}
+	
+	public function getFirstName() {
+		return $this->firstName;
+	}
+	
+	public function getEmail() {
+		return $this->email;
+	}
+	
+	public function getMobilePhone() {
+		return $this->mobilePhone;
+	}
+	
+	public function getHomePhone() {
+		return $this->homePhone;
 	}
 }

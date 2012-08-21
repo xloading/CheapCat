@@ -6,6 +6,12 @@ class User extends CActiveRecord
 	const STATUS_ACTIVE=1;
 	const STATUS_BANED=-1;
 	
+	private static $_saltAddon = 'cheapstroy';
+	public $password_repeat;
+	public $old_password;
+	public $verifyCode;
+	public $activateLink;
+	
 	/**
 	 * The followings are the available columns in table 'users':
 	 * @var integer $id
@@ -48,24 +54,35 @@ class User extends CActiveRecord
 		
 		return ((Yii::app()->getModule('user')->isAdmin())?array(
 			#array('username, password, email', 'required'),
-			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
-			array('password', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
+			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
+			//array('password', 'length', 'max'=>128, 'min' => 6,'message' => UserModule::t("Incorrect password (minimal length 6 symbols).")),
+			array('password, password_repeat', 'required', 'on' => 'changePass, changeAdminPass,register'),
+			array('password', 'compare', 'on' => 'changePass, changeAdminPass,register',
+				'message' => UserModule::t('Passwords are not equivalent! Try again.')),
+			array('password_repeat', 'safe'),
+			array('password', 'length', 'min' => 6, 'max'=>128, 'on' => 'changePass, changeAdminPass,register',
+				'tooShort' => UserModule::t('Password too short! Minimum allowed length is 6 chars.')
+			),
+			
+			array('old_password', 'required', 'on' => 'changeAdminPass'),
+
 			array('service', 'length', 'max'=>50),
 			array('identity', 'length', 'max'=>100),
+			array('salt', 'length', 'max'=>128),
 			array('email', 'email'),
-			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
+			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANED)),
 			array('superuser', 'in', 'range'=>array(0,1)),
-			array('username, email, createtime, lastvisit, superuser, status', 'required'),
+			array(' email, createtime, lastvisit, superuser, status', 'required'), //username,
 			array('createtime, lastvisit, superuser, status', 'numerical', 'integerOnly'=>true),
 		):((Yii::app()->user->id==$this->id)?array(
-			array('username, email', 'required'),
-			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
+			array('email', 'required'), //username,
+			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			array('email', 'email'),
-			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
-			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
+			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
+			//array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
 		):array()));
 	}
@@ -90,7 +107,7 @@ class User extends CActiveRecord
 		return array(
 			'username'=>UserModule::t("username"),
 			'password'=>UserModule::t("password"),
-			'verifyPassword'=>UserModule::t("Retype Password"),
+			'password_repeat'=>UserModule::t("Retype Password"),
 			'email'=>UserModule::t("E-mail"),
 			'verifyCode'=>UserModule::t("Verification Code"),
 			'id' => UserModule::t("Id"),
@@ -146,5 +163,68 @@ class User extends CActiveRecord
 			return isset($_items[$type][$code]) ? $_items[$type][$code] : false;
 		else
 			return isset($_items[$type]) ? $_items[$type] : false;
+	}
+	
+	public static function getIdByUid($uid = false, $service = false) {
+		$id = false;
+		if ($uid) {
+			$serviceCond = '';
+			if ($service) { $serviceCond = ' AND service = "'.$service.'" '; }
+			$id = Yii::app()->db->createCommand()
+						->select('id')
+						->from('users')
+						->where('identity = "'.$uid.'" '.$serviceCond.'')
+						->queryScalar();
+		}
+		return $id;
+	}
+
+	public static function setSocialUid($user_id, $uid, $service = '') {
+		if ($user_id && $uid) {
+			Yii::app()->db->createCommand()
+					->update('users', array(
+						'identity' => $uid,
+						'service' => $service
+					),'id=:id',array(':id'=>$user_id));
+			return true;
+		}
+		var_dump($user_id);
+		var_dump($uid);
+		return false;
+	}
+	
+	public static function getRandomEmail(){
+		$email = self::getRandomWord(8)."@null.io";
+		return $email;
+	}
+	
+	public static function getRandomWord($size = 0){
+		$word = md5(microtime(true));
+		if (!$size)
+			return $word;
+		$subword = substr($word, $size*-1);
+		return $subword;
+	}
+	
+	public function randomString($length = 10){
+		$chars = array_merge(range(0,9), range('a','z'), range('A','Z'));
+		shuffle($chars);
+		return implode('', array_slice($chars, 0, $length));
+	}
+	
+	/**
+	 * Generates a salt that can be used to generate a password hash.
+	 * @return string the salt
+	 */
+	public static function generateSalt() {
+		return uniqid('', true);
+	}
+
+	public function setPassword($password = null){
+		$this->salt = self::generateSalt();
+		if($password == null){
+			$password = $this->password;
+		}
+		$this->password = md5($this->salt . $password . $this->salt . self::$_saltAddon);
 	}
 }

@@ -9,32 +9,88 @@ class LoginController extends Controller
 	 */
 	public function actionLogin()
 	{
-	$service = Yii::app()->request->getQuery('service');
-        if (isset($service)) {
-            $authIdentity = Yii::app()->eauth->getIdentity($service);
-            Yii::app()->user->setReturnUrl($this->createAbsoluteUrl('login'));
-            $authIdentity->redirectUrl = Yii::app()->user->returnUrl;
-            $authIdentity->cancelUrl = $this->createAbsoluteUrl('login');
+		$service = Yii::app()->request->getQuery('service');
 
-            if ($authIdentity->authenticate()) {
-                $identity = new EAuthUserIdentity($authIdentity);
+		if (Yii::app()->request->getQuery('soc_error_save'))
+			Yii::app()->user->setFlash('error', tt('Error saving data. Please try again later.', 'socialauth'));
+		if (Yii::app()->request->getQuery('deactivate'))
+			showMessage(tc('Login'), tt('Your account not active. Administrator deactivate your account.', 'socialauth'), null, true);
+		
+		if (isset($service)) {
+			$model = new Userlogin;
 
-                // successful authentication
-                if ($identity->authenticate()) {
-                    Yii::app()->user->login($identity);
-
-                    // special redirect with closing popup window
-                    $authIdentity->redirect();
-                }
-                else {
-                    // close popup window and redirect to cancelUrl
-                    $authIdentity->cancel();
-                }
-            }
-
-            // Something went wrong, redirect to login page
-            $this->redirect(array('user/login'));
-        }
+			$authIdentity = Yii::app()->eauth->getIdentity($service);
+			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
+			$authIdentity->cancelUrl = $this->createAbsoluteUrl('user/login');
+			
+			if ($authIdentity->authenticate()) {
+				$identity = new EAuthUserIdentity($authIdentity);
+								
+				// успешная авторизация
+				if ($identity->authenticate()) {
+					//Yii::app()->user->login($identity);
+					
+					$uid = $identity->id;
+					$firstName = $identity->firstName;
+					$email = $identity->email;
+					$service = $identity->serviceName;
+					$mobilePhone = $identity->mobilePhone;
+					$homePhone = $identity->homePhone;
+					$isNewUser = false;
+					
+					$existId = User::getIdByUid($uid, $service);
+					
+					if (!$existId) {
+						$isNewUser = true;
+						$email = (!$email) ? User::getRandomEmail() : $email;
+						$phone = '';
+						if ($mobilePhone)
+							$phone = $mobilePhone;
+						elseif ($homePhone)
+							$phone = $homePhone;
+						
+						$user = $this->createUser($email, $phone, '', true);	
+						
+						if (!$user && isset($user['id'])) {
+							$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/login').'?soc_error_save=1');
+						}
+						
+						$success = User::setSocialUid($user['id'], $uid, $service);
+						
+						if (!$success) {
+							User::model()->findByPk($user['id'])->delete();
+							$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/login').'?soc_error_save=1');
+						}
+						
+						$existId = User::getIdByUid($uid, $service);
+					}
+					
+					if ($existId) {	
+						$result = $model->loginSocial($existId);
+						if ($result){
+	//						Yii::app()->user->clearState('id');
+	//						Yii::app()->user->clearState('first_name');
+	//						Yii::app()->user->clearState('nickname');
+							if ($result === 'deactivate')
+								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/login').'/deactivate/1');
+							if ($isNewUser) 
+								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/user/setemailandpass').'/service/'.$service);
+							else
+								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/usercpanel/main/index'));
+						}
+					}
+					// специальное перенаправления для корректного закрытия всплывающего окна
+					$authIdentity->redirect();
+				}
+				else {
+					// закрытие всплывающего окна и перенаправление на cancelUrl
+					$authIdentity->cancel();
+				}
+			}
+			
+			// авторизация не удалась, перенаправляем на страницу входа
+			$this->redirect(array('error'));
+		}
 		
 		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
@@ -62,5 +118,37 @@ class LoginController extends Controller
 		$lastVisit->lastvisit = time();
 		$lastVisit->save();
 	}
+	
+	public function createUser($email, $phone = '', $activateKey = '', $isActive = false) {
+		$model = new User;
+		$model->email = $email;
+		$model->username = $email;
+		/*if ($phone)
+			$model->phone = $phone;*/
+		if ($isActive)
+ 			$model->status = 1;
+		if ($activateKey)
+ 			$model->activkey = $activateKey;
+		
+		$password = $model->randomString();
+		$model->setPassword($password);
 
+		$return = array();
+		
+		if($model->save()){
+			$return = array(
+				'email' => $model->email,
+				'username' => $model->username,
+				'password' => $password,
+				'id' => $model->id,
+				'active' => $model->status,
+				'activateKey' => $activateKey,
+				'activateLink' => Yii::app()->createAbsoluteUrl('/site/activation', array('key' => $activateKey))
+			);
+		}
+		else {
+			var_dump($model->errors);
+		}
+		return $return;
+	}
 }

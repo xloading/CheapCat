@@ -3,6 +3,9 @@
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
+require_once( dirname(__FILE__) . '/../helpers/common.php');
+require_once( dirname(__FILE__) . '/../helpers/strings.php');
+
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
@@ -10,9 +13,9 @@ return array(
 	'name'=>'Стройка и Цены',
 	'language'=>'ru',
 
-	'aliases' => array(
+	/*'aliases' => array(
 		'lily' => 'application.modules.lily',
-	),
+	),*/
 	// preloading 'log' component
 	'preload'=>array('log','lilyModuleLoader',),
 
@@ -31,6 +34,10 @@ return array(
 		'ext.lightopenid.*',
 		'ext.eauth.*',
 		'ext.eauth.services.*',
+		'ext.eauth.custom_services.CustomGoogleService',
+		'ext.eauth.custom_services.CustomVKService',
+		'ext.eauth.custom_services.CustomFBService',
+		'ext.eauth.custom_services.CustomTwitterService',
 		'ext.yii-mail.YiiMailMessage',
 	),
 
@@ -103,11 +110,11 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-			'loginUrl' => array('/lily/user/login'),
+			'loginUrl' => array('/user/user/login'),
 		),
-		'lilyModuleLoader' => array(
+		/*'lilyModuleLoader' => array(
 			'class' => 'lily.LilyModuleLoader',
-		),
+		),*/
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(

@@ -40,6 +40,8 @@ return array (
 	'Update attribute' => 'Редактировать атрибут',
 	'Preview attribute' => 'Посмотреть атрибут',
 	//Grid headers
-	'In brief' => 'В кратком описании'
+	'In brief' => 'В кратком описании',
+	// Social auth labels
+	'Vkontakte' => 'Вконтакте'
     );
 ?>

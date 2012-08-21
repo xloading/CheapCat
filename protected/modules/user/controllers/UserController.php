@@ -25,7 +25,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','setemailandpass'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -113,4 +113,45 @@ class UserController extends Controller
             LilyModule::instance()->userIniter->nextStep();
         }else throw new CHttpException(404);
     }
+    
+	public function actionSetEmailAndPass(){
+		if(isset($_POST['User']))
+		{
+			if (Yii::app()->request->getQuery('service'))
+				$service = Yii::app()->request->getQuery('service');
+			$service_uid = Yii::app()->session['__eauth_'.$service.'__uid'];
+			
+			$social_user = User::model()->findByAttributes(array('service'=>$service,'identity'=>$service_uid,'email_entered'=>0));
+			$current_user=User::model()->findByPk(Yii::app()->user->id);
+			if($social_user && ($social_user->id == $current_user->id))	{
+				$social_user->scenario = 'register';
+
+				$social_user->attributes=$_POST['User'];
+				$social_user->username = $_POST['User']['email'];
+
+				if($social_user->validate()){
+					$social_user->setPassword();
+					$social_user->save(false);
+					showMessage('success', UserModule::t('Thank you for your registration.'));
+					$this->redirect(array('index'));
+				}
+			}
+			else {
+				showMessage('failure', UserModule::t('There was some mistake with your identity, please contact administrators!'));
+			}
+		}
+		else	{
+			if (Yii::app()->request->getQuery('service'))
+				$service = Yii::app()->request->getQuery('service');
+			//$service_uid = Yii::app()->session['__eauth_'.$service.'__uid'];
+			//var_dump(Yii::app()->session);
+			//$social_user = User::model()->findByAttributes(array('service'=>$service,'identity'=>$service_uid,'email_entered'=>0));
+			//$current_user=User::model()->findByPk(Yii::app()->user->id);
+			//if($social_user && ($social_user->id == $current_user->id))	{
+				$this->render('setemail',array(
+					'model'=>User::model()->findByPk(Yii::app()->user->id),
+				));
+			//}
+		}
+	}
 }

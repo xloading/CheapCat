@@ -126,5 +126,7 @@ return array(
 	'Not visited' => 'Не входил',
 	//My own messages
 	'Enter using' => 'Войти при помощи',
+	'Thank you for your registration.' => 'Спасибо за регистрацию.',
+	'There was some mistake with your identity, please contact administrators!' => 'При регистрации возникла ошибка, пожалуйста свяжитесь с администраторами сайта!'
 );
 

@@ -16,35 +16,37 @@
 * Without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ***********************************************************************************************/
 
-require_once dirname(dirname(__FILE__)).'/services/GoogleOAuthService.php';
+require_once dirname(dirname(__FILE__)).'/services/VKontakteOAuthService.php';
 
-class CustomGoogleService extends GoogleOAuthService {	
+class CustomVKService extends VKontakteOAuthService {	
 	protected $jsArguments = array('popup' => array('width' => 750, 'height' => 450));
-	protected $scope = 'https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email';
+	protected $scope = 'users';
 	protected $client_id = '';
 	protected $client_secret = '';
 	protected $providerOptions = array(
-		'authorize' => 'https://accounts.google.com/o/oauth2/auth',
-		'access_token' => 'https://accounts.google.com/o/oauth2/token',
+		'authorize' => 'http://oauth.vk.com/authorize',
+		'access_token' => 'https://oauth.vk.com/access_token',
 	);
 	
 	public function __construct() {
-		$this->title = tt('google_label', 'socialauth');
+		$this->title = Yii::t('labels', 'Vkontakte');
 	}
 	
 	protected function fetchAttributes() {
-		$info = (array)$this->makeSignedRequest('https://www.googleapis.com/oauth2/v1/userinfo');
-				
-		$this->attributes['id'] = $info['id'];
-		$this->attributes['name'] = $info['name'];
+		$info = (array)$this->makeSignedRequest('https://api.vk.com/method/users.get', array(
+			'query' => array(
+				'uids' => $this->uid,
+				'fields' => 'uid, first_name, contacts',
+			),
+		));
+
+		$info = $info['response'][0];
 		
-		if (!empty($info['link']))
-			$this->attributes['url'] = $info['link'];
-				
-		$this->attributes['id'] = $info['id'];
-		$this->attributes['firstName'] = $info['given_name'];
-		$this->attributes['email'] = (isset($info['verified_email']) && $info['verified_email']) ? $info['email'] : '';
-		$this->attributes['mobilePhone'] = '';
-		$this->attributes['homePhone'] = '';
+		$this->attributes['id'] = $info->uid;
+		$this->attributes['firstName'] = $info->first_name;
+		$this->attributes['email'] = '';
+		$this->attributes['mobilePhone'] = (isset($info->mobile_phone) && $info->mobile_phone) ? $info->mobile_phone : '';
+		$this->attributes['homePhone'] = (isset($info->home_phone) && $info->home_phone) ? $info->home_phone : '';
+		$this->attributes['url'] = 'http://vk.com/id'.$info->uid;
 	}
 }

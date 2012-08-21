@@ -22,7 +22,19 @@ class EAuth extends CApplicationComponent {
 	 * @var boolean Whether to use popup window for the authorization dialog.
 	 */
 	public $popup = true;
+	
+public function init() {
+		parent::init();
+
+		$this->services['google_oauth']['class'] = 'CustomGoogleService';
 		
+		$this->services['twitter']['class'] = 'CustomTwitterService';
+	
+		$this->services['facebook']['class'] = 'CustomFBService';
+	
+		$this->services['vkontakte']['class'] = 'CustomVKService';
+	}
+
 	/**
 	 * Returns services settings declared in the authorization classes.
 	 * For perfomance reasons it uses Yii::app()->cache to store settings array.
