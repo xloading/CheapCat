@@ -14,7 +14,13 @@ class UserController extends Controller
 	{
 		return CMap::mergeArray(parent::filters(),array(
 			'accessControl', // perform access control for CRUD operations
-		));
+			array(
+	            'ESetReturnUrlFilter',
+	            // Use for spcified actions (index and view):
+	            // 'ESetReturnUrlFilter + index, view',
+	        )
+		)
+		);
 	}
 	/**
 	 * Specifies the access control rules.
@@ -132,8 +138,8 @@ class UserController extends Controller
 				if($social_user->validate()){
 					$social_user->setPassword();
 					$social_user->save(false);
-					showMessage('success', UserModule::t('Thank you for your registration.'));
-					$this->redirect(array('index'));
+					//showMessage('success', UserModule::t('Thank you for your registration.'));
+					$this->redirect(Yii::app()->user->returnUrl);
 				}
 			}
 			else {
@@ -148,6 +154,7 @@ class UserController extends Controller
 			//$social_user = User::model()->findByAttributes(array('service'=>$service,'identity'=>$service_uid,'email_entered'=>0));
 			//$current_user=User::model()->findByPk(Yii::app()->user->id);
 			//if($social_user && ($social_user->id == $current_user->id))	{
+				//var_dump(Yii::app()->user->returnUrl);
 				$this->render('setemail',array(
 					'model'=>User::model()->findByPk(Yii::app()->user->id),
 				));

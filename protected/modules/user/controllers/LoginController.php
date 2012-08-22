@@ -3,6 +3,16 @@
 class LoginController extends Controller
 {
 	public $defaultAction = 'login';
+	
+	function filters() {
+	    return array(
+	        array(
+	            'ESetReturnUrlFilter',
+	            // Use for spcified actions (index and view):
+	            // 'ESetReturnUrlFilter + index, view',
+	        ),
+	    );
+	}
 
 	/**
 	 * Displays the login page
@@ -20,6 +30,9 @@ class LoginController extends Controller
 			$model = new Userlogin;
 
 			$authIdentity = Yii::app()->eauth->getIdentity($service);
+			$ret_url = Yii::app()->request->getQuery('ret');
+			if(isset($ret_url) && $ret_url)
+				Yii::app()->user->setReturnUrl($ret_url);
 			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
 			$authIdentity->cancelUrl = $this->createAbsoluteUrl('user/login');
 			
@@ -74,7 +87,7 @@ class LoginController extends Controller
 							if ($result === 'deactivate')
 								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/login').'/deactivate/1');
 							if ($isNewUser) 
-								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/user/setemailandpass').'/service/'.$service);
+								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/user/setemailandpass').'/service/'.$service/*.'/ret/'.Yii::app()->user->returnUrl*/);
 							else
 								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/usercpanel/main/index'));
 						}

@@ -39,6 +39,7 @@ return array(
 		'ext.eauth.custom_services.CustomFBService',
 		'ext.eauth.custom_services.CustomTwitterService',
 		'ext.yii-mail.YiiMailMessage',
+		'ext.filters.setReturnUrl.ESetReturnUrlFilter',
 	),
 
 	'modules'=>array(
@@ -110,7 +111,7 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-			'loginUrl' => array('/user/user/login'),
+			'loginUrl' => array('/user/login'),
 		),
 		/*'lilyModuleLoader' => array(
 			'class' => 'lily.LilyModuleLoader',

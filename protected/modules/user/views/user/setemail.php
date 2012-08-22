@@ -1,8 +1,9 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - Login';
+$this->pageTitle=Yii::app()->name . ' - Set email and passowrd';
 $this->breadcrumbs=array(
 	'Login',
 );
+$model->email = '';
 ?>
 
 <div class="form">
