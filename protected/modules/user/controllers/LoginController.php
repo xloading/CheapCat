@@ -28,6 +28,12 @@ class LoginController extends Controller
 		
 		if (isset($service)) {
 			$model = new Userlogin;
+			
+			// if called without specific returnUrl, set it to the previous page
+			if (isset($_SERVER['HTTP_REFERER']))
+			{
+				Yii::app()->user->setReturnUrl($_SERVER['HTTP_REFERER']);
+			}
 
 			$authIdentity = Yii::app()->eauth->getIdentity($service);
 			$ret_url = Yii::app()->request->getQuery('ret');
@@ -87,9 +93,9 @@ class LoginController extends Controller
 							if ($result === 'deactivate')
 								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/login').'/deactivate/1');
 							if ($isNewUser) 
-								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/user/user/setemailandpass').'/service/'.$service/*.'/ret/'.Yii::app()->user->returnUrl*/);
+								$authIdentity->redirect(Yii::app()->user->returnUrl);
 							else
-								$authIdentity->redirect(Yii::app()->createAbsoluteUrl('/usercpanel/main/index'));
+								$authIdentity->redirect(Yii::app()->user->returnUrl);
 						}
 					}
 					// специальное перенаправления для корректного закрытия всплывающего окна
@@ -106,6 +112,12 @@ class LoginController extends Controller
 		}
 		
 		if (Yii::app()->user->isGuest) {
+			// if called without specific returnUrl, set it to the previous page
+			if (isset($_SERVER['HTTP_REFERER']))
+			{
+				Yii::app()->user->setReturnUrl($_SERVER['HTTP_REFERER']);
+			}
+			
 			$model=new UserLogin;
 			// collect user input data
 			if(isset($_POST['UserLogin']))
@@ -114,14 +126,31 @@ class LoginController extends Controller
 				// validate user input and redirect to previous page if valid
 				if($model->validate()) {
 					$this->lastViset();
-					if (strpos(Yii::app()->user->returnUrl,'/index.php')!==false)
+					$returnUrl = Yii::app()->user->returnUrl;
+					/*if (strpos(Yii::app()->user->returnUrl,'/index.php')!==false)
 						$this->redirect(Yii::app()->controller->module->returnUrl);
-					else
-						$this->redirect(Yii::app()->user->returnUrl);
+					else*/
+					Yii::app()->user->setReturnUrl('');
+					$this->redirect($returnUrl);
+					//$this->redirect(Yii::app()->user->returnUrl);
 				}
 			}
 			// display the login form
-			$this->render('/user/login',array('model'=>$model));
+			if( Yii::app()->request->isAjaxRequest )
+			{
+			  // Stop jQuery from re-initialization
+			  Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+			
+			  echo CJSON::encode( array(
+			    'status' => 'failure',
+			    'content' => $this->renderPartial( '/user/_form', array(
+			    'model' => $model ), true, true ),
+			  ));
+			  exit;
+			}
+			else	{
+				$this->render('/user/login',array('model'=>$model));
+			}
 		} else
 			$this->redirect(Yii::app()->controller->module->returnUrl);
 	}

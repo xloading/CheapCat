@@ -42,6 +42,7 @@ return array (
 	//Grid headers
 	'In brief' => 'В кратком описании',
 	// Social auth labels
-	'Vkontakte' => 'Вконтакте'
+	'Vkontakte' => 'Вконтакте',
+	'Google' => 'Google',
     );
 ?>

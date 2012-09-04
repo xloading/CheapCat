@@ -28,9 +28,9 @@ public function init() {
 
 		$this->services['google_oauth']['class'] = 'CustomGoogleService';
 		
-		$this->services['twitter']['class'] = 'CustomTwitterService';
+		/*$this->services['twitter']['class'] = 'CustomTwitterService';
 	
-		$this->services['facebook']['class'] = 'CustomFBService';
+		$this->services['facebook']['class'] = 'CustomFBService';*/
 	
 		$this->services['vkontakte']['class'] = 'CustomVKService';
 	}

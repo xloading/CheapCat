@@ -7,7 +7,7 @@ class User extends CActiveRecord
 	const STATUS_BANED=-1;
 	
 	private static $_saltAddon = 'cheapstroy';
-	public $password_repeat;
+	//public $password_repeat;
 	public $old_password;
 	public $verifyCode;
 	public $activateLink;
@@ -56,10 +56,10 @@ class User extends CActiveRecord
 			#array('username, password, email', 'required'),
 			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			//array('password', 'length', 'max'=>128, 'min' => 6,'message' => UserModule::t("Incorrect password (minimal length 6 symbols).")),
-			array('password, password_repeat', 'required', 'on' => 'changePass, changeAdminPass,register'),
+			/*array('password, password_repeat', 'required', 'on' => 'changePass, changeAdminPass,register'),
 			array('password', 'compare', 'on' => 'changePass, changeAdminPass,register',
 				'message' => UserModule::t('Passwords are not equivalent! Try again.')),
-			array('password_repeat', 'safe'),
+			array('password_repeat', 'safe'),*/
 			array('password', 'length', 'min' => 6, 'max'=>128, 'on' => 'changePass, changeAdminPass,register',
 				'tooShort' => UserModule::t('Password too short! Minimum allowed length is 6 chars.')
 			),
@@ -226,5 +226,27 @@ class User extends CActiveRecord
 			$password = $this->password;
 		}
 		$this->password = md5($this->salt . $password . $this->salt . self::$_saltAddon);
+	}
+	
+	/**
+	 * Generates the password hash.
+	 * @param string password
+	 * @param string salt
+	 * @return string hash
+	 */
+	public static function hashPassword($password, $salt) {
+		return md5($salt . $password . $salt . self::$_saltAddon);
+	}
+	
+	/**
+	 * Checks if the given password is correct.
+	 * @param string the password to be validated
+	 * @return boolean whether the password is valid
+	 */
+	public function validatePassword($password) {
+		/*var_dump($password);
+		var_dump(self::hashPassword($password, $this->salt));
+		var_dump($this->password);*/
+		return self::hashPassword($password, $this->salt) === $this->password;
 	}
 }

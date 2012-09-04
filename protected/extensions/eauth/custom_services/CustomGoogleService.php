@@ -29,7 +29,7 @@ class CustomGoogleService extends GoogleOAuthService {
 	);
 	
 	public function __construct() {
-		$this->title = tt('google_label', 'socialauth');
+		$this->title = Yii::t('labels', 'Google');
 	}
 	
 	protected function fetchAttributes() {

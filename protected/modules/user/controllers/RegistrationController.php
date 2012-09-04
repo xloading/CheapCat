@@ -41,10 +41,14 @@ class RegistrationController extends Controller
 					$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
 					if($model->validate()&&$profile->validate())
 					{
+						//var_dump($model->password);
 						$soucePassword = $model->password;
 						$model->activkey=UserModule::encrypting(microtime().$model->password);
-						$model->password=UserModule::encrypting($model->password);
-						$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
+						$model->setPassword($model->password);
+						$model->verifyPassword=$model->hashPassword($model->verifyPassword,$model->salt);
+						//var_dump($model->password);
+						//var_dump($model->verifyPassword);
+						//var_dump($model->salt);
 						$model->createtime=time();
 						$model->lastvisit=((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin)?time():0;
 						$model->superuser=0;

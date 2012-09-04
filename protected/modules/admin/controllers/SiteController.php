@@ -4,6 +4,36 @@ class SiteController extends Controller
 {
 	public $layout='/layouts/column1';
 	//public $defaultAction = 'admin';
+	
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array(
+				'allow',
+				'expression' => 'Yii::app()->user->getState("isAdmin")',
+			),
+			array(
+				'deny',
+				'users'=>array('*'),
+			),
+		);
+	}
+	
 	/**
 	 * Declares class-based actions.
 	 */

@@ -45,6 +45,9 @@ class ServiceUserIdentity extends CUserIdentity
         if (FactoryService::get('user')->save($user)) {
         $this->_id = $user->getId();
         $this->username = $this->service->getAttribute('name');
+        if($user->isAdmin){
+			$this->setState('isAdmin', $user->isAdmin);
+		}
         $this->setState('id', $this->_id);
         $this->setState('serviceId', $this->service->id);
         $this->setState('name', $this->username);
