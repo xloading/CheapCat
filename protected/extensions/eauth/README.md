@@ -23,7 +23,7 @@ The implementation of the authorization on your own server has several advantage
 * Extend the standard authorization classes to obtain additional data about the user.
 * Work with the API of social networks by extending the authorization classes.
 * Set up a list of supported services, customize the appearance of the widget, use the popup window without closing your application.
-	
+
 
 ### Extension includes:
 
@@ -37,7 +37,7 @@ The implementation of the authorization on your own server has several advantage
 
 * OpenID: Google, Yandex(ru)
 * OAuth: Twitter, LinkedIn
-* OAuth 2.0: Google, Facebook, GitHub, VKontake(ru), Mail.ru(ru), Moi Krug(ru), Odnoklassniki(ru)
+* OAuth 2.0: Google, Facebook, Live, GitHub, VKontake(ru), Mail.ru(ru), Moi Krug(ru), Odnoklassniki(ru)
 
 
 ### Resources
@@ -83,6 +83,8 @@ The implementation of the authorization on your own server has several advantage
 		'eauth' => array(
 			'class' => 'ext.eauth.EAuth',
 			'popup' => true, // Use the popup window instead of redirecting.
+			'cache' => false, // Cache component name or false to disable cache. Defaults to 'cache'.
+			'cacheExpire' => 0, // Cache lifetime. Defaults to 0 - means unlimited.
 			'services' => array( // You can change the providers and their classes.
 				'google' => array(
 					'class' => 'GoogleOpenIDService',
@@ -103,6 +105,13 @@ The implementation of the authorization on your own server has several advantage
 					'client_secret' => '...',
 					'title' => 'Google (OAuth)',
 				),
+				'yandex_oauth' => array(
+					// register your app here: https://oauth.yandex.ru/client/my
+					'class' => 'YandexOAuthService',
+					'client_id' => '...',
+					'client_secret' => '...',
+					'title' => 'Yandex (OAuth)',
+				),
 				'facebook' => array(
 					// register your app here: https://developers.facebook.com/apps/
 					'class' => 'FacebookOAuthService',
@@ -121,8 +130,14 @@ The implementation of the authorization on your own server has several advantage
 					'client_id' => '...',
 					'client_secret' => '...',
 				),
+				'live' => array(
+					// register your app here: https://manage.dev.live.com/Applications/Index
+					'class' => 'LiveOAuthService',
+					'client_id' => '...',
+					'client_secret' => '...',
+				),
 				'vkontakte' => array(
-					// register your app here: http://vkontakte.ru/editapp?act=create&site=1
+					// register your app here: https://vk.com/editapp?act=create&site=1
 					'class' => 'VKontakteOAuthService',
 					'client_id' => '...',
 					'client_secret' => '...',
@@ -140,7 +155,8 @@ The implementation of the authorization on your own server has several advantage
 					'client_secret' => '...',
 				),
 				'odnoklassniki' => array(
-					// register your app here: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
+					// register your app here: http://dev.odnoklassniki.ru/wiki/pages/viewpage.action?pageId=13992188
+					// ... or here: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
 					'class' => 'OdnoklassnikiOAuthService',
 					'client_id' => '...',
 					'client_public' => '...',
@@ -168,14 +184,14 @@ The implementation of the authorization on your own server has several advantage
 			$authIdentity = Yii::app()->eauth->getIdentity($service);
 			$authIdentity->redirectUrl = Yii::app()->user->returnUrl;
 			$authIdentity->cancelUrl = $this->createAbsoluteUrl('site/login');
-			
+
 			if ($authIdentity->authenticate()) {
 				$identity = new EAuthUserIdentity($authIdentity);
-				
+
 				// successful authentication
 				if ($identity->authenticate()) {
 					Yii::app()->user->login($identity);
-					
+
 					// special redirect with closing popup window
 					$authIdentity->redirect();
 				}
@@ -184,11 +200,11 @@ The implementation of the authorization on your own server has several advantage
 					$authIdentity->cancel();
 				}
 			}
-			
+
 			// Something went wrong, redirect to login page
 			$this->redirect(array('site/login'));
 		}
-		
+
 		// default authorization code through login/password ..
 	}
 ```
@@ -197,7 +213,7 @@ The implementation of the authorization on your own server has several advantage
 
 ```php
 <h2>Do you already have an account on one of these sites? Click the logo to log in with it here:</h2>
-<?php 
+<?php
 	$this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login'));
 ?>
 ```

@@ -2,7 +2,12 @@ Yii EAuth Change Log
 ====================
 
 ### In progress...
-
+* Added Microsoft Live OAuth provider.
+* Added Yandex OAuth provider.
+* Added CustomFacebookService example class.
+* Added 'cache' and 'cacheExpire' options to control cache.
+* Added list of services to display in the EAuthWidget.
+* Changed VK.com API urls.
 
 ### Version 1.1.8 (10.06.2012)
 * Added optional headers in EOAuthServiceBase::initRequest().

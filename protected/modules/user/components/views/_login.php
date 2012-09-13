@@ -41,7 +41,7 @@ $form = new CForm(array(
 
     'buttons'=>array(
         'login'=>array(
-            'type'=>'submit',
+            'type'=>'primary',
             'label'=>'Login',
         ),
     ),

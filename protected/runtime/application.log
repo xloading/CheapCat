@@ -5881,3 +5881,573 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/09/04 22:22:08 [error] [exception.CException] exception 'CException' with message 'Контроллер LoginController не может найти представление "/user/_form".' in Z:\home\stroyka.ru\www\yii\framework\web\CController.php:879
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(147): CController->renderPartial('/user/_form', Array, true, true)
+#1 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#10 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#12 {main}
+REQUEST_URI=/user/login/login?_=1346782926984
+HTTP_REFERER=http://www.stroyka.ru/
+---
+2012/09/04 22:22:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:12:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:18:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:18:42 [error] [exception.EAuthException] exception 'EAuthException' in Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php:333
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php(262): EAuthServiceBase->parseJson('{"access_token"...')
+#1 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(108): EAuthServiceBase->makeRequest('https://oauth.v...')
+#2 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(61): EOAuth2Service->getAccessToken('452fd52d73155ba...')
+#3 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(45): EOAuth2Service->authenticate()
+#4 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#12 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#13 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/login/vkontakte?code=452fd52d73155bae95
+HTTP_REFERER=http://www.stroyka.ru/
+---
+2012/09/11 22:18:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:22:17 [error] [exception.EAuthException] exception 'EAuthException' in Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php:333
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php(262): EAuthServiceBase->parseJson('{"access_token"...')
+#1 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(108): EAuthServiceBase->makeRequest('https://oauth.v...')
+#2 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(61): EOAuth2Service->getAccessToken('e534a01c06fd050...')
+#3 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(45): EOAuth2Service->authenticate()
+#4 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#12 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#13 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/login/vkontakte?code=e534a01c06fd050da0
+HTTP_REFERER=http://www.stroyka.ru/
+---
+2012/09/11 22:22:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:22:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:22:30 [error] [exception.EAuthException] exception 'EAuthException' in Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php:333
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php(262): EAuthServiceBase->parseJson('{"access_token"...')
+#1 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(108): EAuthServiceBase->makeRequest('https://oauth.v...')
+#2 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(61): EOAuth2Service->getAccessToken('7eb1fec4a4b38fe...')
+#3 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(45): EOAuth2Service->authenticate()
+#4 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#12 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#13 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/login/vkontakte?code=7eb1fec4a4b38fec73
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:22:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:26:18 [error] [exception.EAuthException] exception 'EAuthException' in Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php:333
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php(262): EAuthServiceBase->parseJson('{"access_token"...')
+#1 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(108): EAuthServiceBase->makeRequest('https://oauth.v...')
+#2 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(61): EOAuth2Service->getAccessToken('24c755d0989530b...')
+#3 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(45): EOAuth2Service->authenticate()
+#4 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#12 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#13 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/login/vkontakte?code=24c755d0989530b033
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:26:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:27:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:27:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:30:07 [error] [exception.EAuthException] exception 'EAuthException' in Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php:333
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php(262): EAuthServiceBase->parseJson('{"access_token"...')
+#1 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(108): EAuthServiceBase->makeRequest('https://oauth.v...')
+#2 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(61): EOAuth2Service->getAccessToken('4fc803403434bb8...')
+#3 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(45): EOAuth2Service->authenticate()
+#4 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#12 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#13 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/login/vkontakte?code=4fc803403434bb89f7
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:30:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:32:51 [error] [exception.EAuthException] exception 'EAuthException' in Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php:333
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\extensions\eauth\EAuthServiceBase.php(262): EAuthServiceBase->parseJson('{"access_token"...')
+#1 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(108): EAuthServiceBase->makeRequest('https://oauth.v...')
+#2 Z:\home\stroyka.ru\www\protected\extensions\eauth\EOAuth2Service.php(61): EOAuth2Service->getAccessToken('a8b9ece83ff3df6...')
+#3 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(45): EOAuth2Service->authenticate()
+#4 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#12 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#13 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/login/vkontakte?code=a8b9ece83ff3df64d3
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:32:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:37:44 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "EAuthUserIdentity.firstName".' in Z:\home\stroyka.ru\www\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(53): CComponent->__get('firstName')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#10 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#12 {main}
+REQUEST_URI=/login/vkontakte?code=70b9a4094e2b71f1e9
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:37:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:39:04 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "EAuthUserIdentity.firstName".' in Z:\home\stroyka.ru\www\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(53): CComponent->__get('firstName')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#10 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#12 {main}
+REQUEST_URI=/login/vkontakte?redirect_uri=http%3A%2F%2Fwww.stroyka.ru%2Flogin%2Fvkontakte&js
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:39:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:40:25 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "EAuthUserIdentity.firstName".' in Z:\home\stroyka.ru\www\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\modules\user\controllers\LoginController.php(53): CComponent->__get('firstName')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): LoginController->actionLogin()
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CFilter->filter(Object(CFilterChain))
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('user/login/logi...')
+#10 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#12 {main}
+REQUEST_URI=/login/vkontakte?redirect_uri=http%3A%2F%2Fwww.stroyka.ru%2Flogin%2Fvkontakte&js
+HTTP_REFERER=http://www.stroyka.ru/login
+---
+2012/09/11 22:40:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:40:58 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('')
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('admin')
+#9 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#11 {main}
+REQUEST_URI=/admin
+HTTP_REFERER=http://www.stroyka.ru/login/vkontakte?redirect_uri=http%3A%2F%2Fwww.stroyka.ru%2Flogin%2Fvkontakte&js
+---
+2012/09/11 22:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:50:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:50:25 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('')
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('admin')
+#9 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#11 {main}
+REQUEST_URI=/admin
+---
+2012/09/11 22:50:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:50:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:50:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:50:49 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('')
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('admin')
+#9 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#11 {main}
+REQUEST_URI=/admin
+HTTP_REFERER=http://www.stroyka.ru/login/vkontakte?code=781926707db57d6094
+---
+2012/09/11 22:50:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 22:53:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:15:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:15:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:15:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('')
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('admin')
+#9 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#11 {main}
+REQUEST_URI=/admin
+HTTP_REFERER=http://stroyka.ru/login/vkontakte?code=80c9b3248ab3bdbb51
+---
+2012/09/11 23:15:58 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('')
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('admin')
+#9 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#11 {main}
+REQUEST_URI=/admin
+---
+2012/09/11 23:21:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:21:30 [error] [exception.CException] exception 'CException' with message 'В классе LoginForm и его поведениях не найден метод или замыкание с именем "loginSocial".' in Z:\home\stroyka.ru\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 Z:\home\stroyka.ru\www\protected\controllers\SiteController.php(139): CComponent->__call('loginSocial', Array)
+#1 Z:\home\stroyka.ru\www\protected\controllers\SiteController.php(139): LoginForm->loginSocial('35')
+#2 Z:\home\stroyka.ru\www\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#3 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('login')
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('site/login/serv...')
+#8 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#10 {main}
+REQUEST_URI=/site/login/service/vkontakte?code=3e4f685778c6ae144f
+HTTP_REFERER=http://www.stroyka.ru/
+---
+2012/09/11 23:21:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:22:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:23:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:23:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:24:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:24:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/11 23:24:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('')
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('admin')
+#9 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#11 {main}
+REQUEST_URI=/admin
+HTTP_REFERER=http://www.stroyka.ru/login/vkontakte?code=904822f231d668adff
+---
+2012/09/11 23:24:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---

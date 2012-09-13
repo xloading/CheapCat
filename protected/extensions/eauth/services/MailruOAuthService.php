@@ -5,7 +5,7 @@
  * Register application: http://api.mail.ru/sites/my/add
  * 
  * @author ChooJoy <choojoy.work@gmail.com>
- * @link http://code.google.com/p/yii-eauth/
+ * @link http://github.com/Nodge/yii-eauth/
  * @license http://www.opensource.org/licenses/bsd-license.php
  */
 
@@ -102,7 +102,7 @@ class MailruOAuthService extends EOAuth2Service {
 	
 	public function makeSignedRequest($url, $options = array(), $parseJson = true) {
 		if (!$this->getIsAuthenticated())
-				throw new CHttpException(401, Yii::t('eauth', 'Unable to complete the authentication because the required data was not received.', array('{provider}' => ucfirst($this->serviceName))));
+				throw new CHttpException(401, Yii::t('eauth', 'Unable to complete the authentication because the required data was not received.', array('{provider}' => $this->getServiceTitle())));
 	
 		$options['query']['secure'] = 1;
 		$options['query']['session_key'] = $this->access_token;

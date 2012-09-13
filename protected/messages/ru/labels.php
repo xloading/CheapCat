@@ -12,6 +12,7 @@ return array (
 	'string from list' => 'строковый список',
 	'integer from list' => 'целочисленный список',
 	'text' => 'текстовый',
+	'Login form' => 'Вход',
 	//Category
     'Edit category' => 'Редактировать категорию',
 	'Delete category' => 'Удалить категорию',

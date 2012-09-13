@@ -2,10 +2,10 @@
 /**
  * VKontakteOAuthService class file.
  *
- * Register application: http://vkontakte.ru/editapp?act=create&site=1
- * 
+ * Register application: http://vk.com/editapp?act=create&site=1
+ *
  * @author Maxim Zemskov <nodge@yandex.ru>
- * @link http://code.google.com/p/yii-eauth/
+ * @link http://github.com/Nodge/yii-eauth/
  * @license http://www.opensource.org/licenses/bsd-license.php
  */
 
@@ -15,9 +15,9 @@ require_once dirname(dirname(__FILE__)).'/EOAuth2Service.php';
  * VKontakte provider class.
  * @package application.extensions.eauth.services
  */
-class VKontakteOAuthService extends EOAuth2Service {	
-	
-	public $name = 'vkontakte';
+class VKontakteOAuthService extends EOAuth2Service {
+
+	protected $name = 'vkontakte';
 	protected $title = 'VK.com';
 	protected $type = 'OAuth';
 	protected $jsArguments = array('popup' => array('width' => 585, 'height' => 350));
@@ -26,14 +26,14 @@ class VKontakteOAuthService extends EOAuth2Service {
 	protected $client_secret = '';
 	protected $scope = 'friends';
 	protected $providerOptions = array(
-		'authorize' => 'http://oauth.vk.com/authorize',
-		'access_token' => 'https://oauth.vk.com/access_token',
+		'authorize' => 'http://api.vk.com/oauth/authorize',
+		'access_token' => 'https://api.vk.com/oauth/access_token',
 	);
-	
+
 	protected $uid = null;
-	
+
 	protected function fetchAttributes() {
-		$info = (array)$this->makeSignedRequest('https://api.vkontakte.ru/method/getProfiles', array(
+		$info = (array)$this->makeSignedRequest('https://api.vk.com/method/users.get.json', array(
 			'query' => array(
 				'uids' => $this->uid,
 				'fields' => '', // uid, first_name and last_name is always available
@@ -45,20 +45,20 @@ class VKontakteOAuthService extends EOAuth2Service {
 
 		$this->attributes['id'] = $info->uid;
 		$this->attributes['name'] = $info->first_name.' '.$info->last_name;
-		$this->attributes['url'] = 'http://vkontakte.ru/id'.$info->uid;
-		
+		$this->attributes['url'] = 'http://vk.com/id'.$info->uid;
+
 		/*if (!empty($info->nickname))
 			$this->attributes['username'] = $info->nickname;
 		else
 			$this->attributes['username'] = 'id'.$info->uid;
-		
+
 		$this->attributes['gender'] = $info->sex == 1 ? 'F' : 'M';
-		
+
 		$this->attributes['city'] = $info->city;
 		$this->attributes['country'] = $info->country;
-		
+
 		$this->attributes['timezone'] = timezone_name_from_abbr('', $info->timezone*3600, date('I'));;
-		
+
 		$this->attributes['photo'] = $info->photo;
 		$this->attributes['photo_medium'] = $info->photo_medium;
 		$this->attributes['photo_big'] = $info->photo_big;
@@ -71,10 +71,21 @@ class VKontakteOAuthService extends EOAuth2Service {
 	 * @return string url to request. 
 	 */
 	protected function getCodeUrl($redirect_uri) {
+		$this->setState('redirect_uri', $redirect_uri);
+		
 		$url = parent::getCodeUrl($redirect_uri);
 		if (isset($_GET['js']))
 			$url .= '&display=popup';
+				
 		return $url;
+	}
+	
+	/**
+	 * Returns the url to request to get OAuth2 access token.
+	 * @return string url to request. 
+	 */
+	protected function getTokenUrl($code) {
+		return parent::getTokenUrl($code).'&redirect_uri='.urlencode($this->getState('redirect_uri'));
 	}
 	
 	/**
