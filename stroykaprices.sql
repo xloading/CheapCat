@@ -724,32 +724,37 @@ INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(128) NOT NULL,
+  `salt` varchar(128) DEFAULT NULL,
   `email` varchar(128) NOT NULL,
   `activkey` varchar(128) NOT NULL DEFAULT '',
   `createtime` int(10) NOT NULL DEFAULT '0',
   `lastvisit` int(10) NOT NULL DEFAULT '0',
   `superuser` int(1) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '0',
-  `service` varchar(255) DEFAULT NULL,
-  `identity` varchar(255) DEFAULT NULL,
+  `service` varchar(50) DEFAULT NULL,
+  `identity` varchar(100) DEFAULT NULL,
   `profile_name` varchar(255) DEFAULT NULL,
+  `email_entered` int(1) DEFAULT '0' COMMENT 'Flags whether email was entered or generated',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`),
-  KEY `superuser` (`superuser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  KEY `superuser` (`superuser`),
+  KEY `identity` (`identity`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`, `service`, `identity`, `profile_name`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'xloading@mail.ru', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1341432858, 1, 1, NULL, NULL, NULL),
-(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 1321171929, 0, 1, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`, `service`, `identity`, `profile_name`, `email_entered`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL, 'xloading@mail.ru', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1346587966, 1, 1, NULL, NULL, NULL, 0),
+(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', NULL, 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 1321171929, 0, 1, NULL, NULL, NULL, 0),
+(34, 'xloading', '7b7be30c7b536341ceb397fab025df0a', '504357f4aeab28.33487117', 'g.nepotachev@gmail.com', '7e6d6a5d33464704d722bd83e0efee11', 1346590708, 1346604985, 0, 1, NULL, NULL, NULL, 0),
+(35, '92f3d30e@null.io', 'd5154367b3a8a71b8f17c8280b7daad0', '504f85b9a3c9f2.08369031', '92f3d30e@null.io', '', 0, 0, 0, 1, NULL, '13437480', NULL, 0);
 
 -- --------------------------------------------------------
 
