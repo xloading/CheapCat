@@ -48,10 +48,10 @@ class ProductcategoryController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($slug)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel($slug),
 		));
 	}
 
@@ -71,9 +71,9 @@ class ProductcategoryController extends Controller
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded
 	 */
-	public function loadModel($id)
+	public function loadModel($slug)
 	{
-		$model=Productcategory::model()->findByPk($id);
+		$model=Productcategory::model()->findByAttributes(array('slug'=>$slug));
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

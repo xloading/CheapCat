@@ -106,7 +106,7 @@ return array(
 				'login/<service:(vkontakte|google)>*'=>'user/login/login',
 				'login'=>'user/login/login', // /<service:(vkontakte|google)
 				'user/<controller:\w+>/<action:\w+>/<service:\w+>'=>'user/<controller>/<action>',
-				'category/<url_name:\w+>' => 'productcategory/view',
+				'category/<slug:\w+>' => 'productcategory/view',
 			),
 			'showScriptName' => FALSE,
 		),

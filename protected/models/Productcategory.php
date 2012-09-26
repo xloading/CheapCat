@@ -45,7 +45,7 @@ class Productcategory extends CActiveRecord
 			array('name', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parentid, name, inherit_attrs_from_parent', 'safe', 'on'=>'search'),
+			array('id, parentid, name, inherit_attrs_from_parent, slug', 'safe', 'on'=>'search'),
 		);
 	}
 

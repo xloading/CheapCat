@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.9
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 13, 2012 at 05:09 PM
--- Server version: 5.5.25
--- PHP Version: 5.3.13
+-- Host: localhost
+-- Generation Time: Sep 26, 2012 at 01:56 AM
+-- Server version: 5.1.40
+-- PHP Version: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -269,9 +269,9 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `brand_id`, `categoryid`, `description`, `smallpic`, `largepic`, `manual`, `avg_price`, `min_price`, `max_price`) VALUES
-(3, 'Nivoplan', 1, 2, '<p><span style="font-family: arial,helvetica,sans-serif; font-size: small;">Nivoplan&nbsp;- серый или белый порошок, состоящий из цемента, фракционированного песка и синтетических смол.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">При смешивании&nbsp;Nivoplan&nbsp;с водой получается легко наносимый на вертикальные поверхности раствор.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">После схватывания&nbsp;Nivoplan&nbsp;образует плотную штукатурку, устойчивую к влажности и морозу.</span></p>', '/images/products/small/04/WsMjhD6m.jpg', '/images/products/large/04/WsMjhD6m.jpg', 'Infolist_Rotband_Screen57.pdf', '372.50', '367.00', '378.00'),
-(4, 'Knauf Унтерпутц', 3, 2, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Штукатурка цементная фасадная КНАУФ-Унтерпутц&nbsp;&mdash; идеальная основа под декоративные покрытия фасадов.</span>\r\n<ul style="margin-top: 0px; margin-bottom: 1em; color: #869197; font-family: Arial,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 14px; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Повышает водоудерживающую способность поверхности.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Пластичность и&nbsp;возможность тонкослойного нанесения раствора.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Смесь не&nbsp;дает усадки и&nbsp;не&nbsp;образует трещин при высыхании.</span></li>\r\n</ul>', '/images/products/small/05/6qFoc81b.jpg', '/images/products/large/05/6qFoc81b.jpg', '', '0.00', '0.00', '0.00'),
-(5, 'Юнис (UNIS) Алебастр, 5кг', 4, 7, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 15px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: #ffffff; display: inline ! important; float: none;">Предназначен для ремонтных работ внутри помещений: заполнение трещин, раковин в строительных конструкциях. Изготовление лепных и рельефных деталей. Изготовлен из экологически чистого природного сырья.</span>', NULL, '', '', '0.00', '0.00', '0.00');
+(3, 'Nivoplan', 1, 2, '<p><span style="font-family: arial,helvetica,sans-serif; font-size: small;">Nivoplan&nbsp;- серый или белый порошок, состоящий из цемента, фракционированного песка и синтетических смол.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">При смешивании&nbsp;Nivoplan&nbsp;с водой получается легко наносимый на вертикальные поверхности раствор.</span><br /><span style="font-family: arial,helvetica,sans-serif; font-size: small;">После схватывания&nbsp;Nivoplan&nbsp;образует плотную штукатурку, устойчивую к влажности и морозу.</span></p>', '/images/products/small/04/WsMjhD6m.jpg', '/images/products/large/04/WsMjhD6m.jpg', 'Infolist_Rotband_Screen57.pdf', 372.50, 367.00, 378.00),
+(4, 'Knauf Унтерпутц', 3, 2, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Штукатурка цементная фасадная КНАУФ-Унтерпутц&nbsp;&mdash; идеальная основа под декоративные покрытия фасадов.</span>\r\n<ul style="margin-top: 0px; margin-bottom: 1em; color: #869197; font-family: Arial,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 14px; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Повышает водоудерживающую способность поверхности.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Пластичность и&nbsp;возможность тонкослойного нанесения раствора.</span></li>\r\n<li><span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: small;">Смесь не&nbsp;дает усадки и&nbsp;не&nbsp;образует трещин при высыхании.</span></li>\r\n</ul>', '/images/products/small/05/6qFoc81b.jpg', '/images/products/large/05/6qFoc81b.jpg', '', 0.00, 0.00, 0.00),
+(5, 'Юнис (UNIS) Алебастр, 5кг', 4, 7, '<span style="color: #000000; font-family: arial,helvetica,sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 15px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: #ffffff; display: inline ! important; float: none;">Предназначен для ремонтных работ внутри помещений: заполнение трещин, раковин в строительных конструкциях. Изготовление лепных и рельефных деталей. Изготовлен из экологически чистого природного сырья.</span>', NULL, '', '', 0.00, 0.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -326,8 +326,8 @@ INSERT INTO `productattrvalue` (`id`, `product_id`, `attr_id`, `attrlistvalue_id
 DROP TABLE IF EXISTS `productbysupplier`;
 CREATE TABLE IF NOT EXISTS `productbysupplier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `supplierid` int(11) NOT NULL COMMENT 'CONSTRAINT FOREIGN KEY (supplierid) REFERENCES Supplier(id)',
-  `productid` int(11) unsigned NOT NULL COMMENT 'CONSTRAINT FOREIGN KEY (productid) REFERENCES Product(id)',
+  `supplierid` int(11) NOT NULL,
+  `productid` int(11) unsigned NOT NULL,
   `price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `PRODUCTBYSUPPLIERUI01` (`supplierid`,`productid`),
@@ -340,8 +340,8 @@ CREATE TABLE IF NOT EXISTS `productbysupplier` (
 --
 
 INSERT INTO `productbysupplier` (`id`, `supplierid`, `productid`, `price`) VALUES
-(1, 4, 3, '367.00'),
-(2, 5, 3, '378.00');
+(1, 4, 3, 367.00),
+(2, 5, 3, 378.00);
 
 -- --------------------------------------------------------
 
@@ -428,7 +428,7 @@ CREATE TABLE IF NOT EXISTS `product_alsoviewed` (
   `id_possible` int(10) unsigned NOT NULL,
   `probability` decimal(10,2) NOT NULL DEFAULT '0.00',
   KEY `id_current` (`id_current`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Will contain matrix of probabilities build "also viewed products" list';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Will contain matrix of probabilities build "also viewed prod';
 
 -- --------------------------------------------------------
 
@@ -724,7 +724,7 @@ INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(128) NOT NULL,
   `salt` varchar(128) DEFAULT NULL,

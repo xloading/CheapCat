@@ -6539,3 +6539,36 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/09/26 02:03:03 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in Z:\home\stroyka.ru\www\yii\framework\web\CController.php:337
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#3 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#4 Z:\home\stroyka.ru\www\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#5 Z:\home\stroyka.ru\www\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 Z:\home\stroyka.ru\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(276): CController->run('view')
+#9 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('productcategory...')
+#10 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#12 {main}
+REQUEST_URI=/category/shtukaturki
+---
+2012/09/26 02:03:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/09/26 02:04:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 Z:\home\stroyka.ru\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('favicon.ico')
+#1 Z:\home\stroyka.ru\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 Z:\home\stroyka.ru\www\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
