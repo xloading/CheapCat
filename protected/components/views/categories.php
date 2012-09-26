@@ -4,7 +4,7 @@
     	echo CHtml::tag('div',array('class'=>'span4'));
     	echo CHtml::tag('ul');
     	echo CHtml::tag('li');
-		echo CHtml::link($main_category->name,"#", array('class'=>'main_categories'));
+		echo CHtml::link($main_category->name,'/category-'.$main_category->slug, array('class'=>'main_categories'));
 		if (!$main_category->isLeaf()) {
 			$descendant_categories = $main_category->descendants()->findAll();
 			$sum = 0;
@@ -20,7 +20,7 @@
 		if (count($child_categories) > 0) {
 			echo CHtml::tag('li');
 			foreach($child_categories as $child_category) {
-				echo CHtml::link($child_category->name,"#");
+				echo CHtml::link($child_category->name,'/category-'.$child_category->slug);
 				echo '<span class="categories__separator">, </span>';
 			}
 			echo CHtml::closeTag('li');
