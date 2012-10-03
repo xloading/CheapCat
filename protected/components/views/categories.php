@@ -1,6 +1,10 @@
 <?php 
-
+	$col_count = 0;
     foreach($this->categories as $main_category) {
+    	$col_count++;
+    	if ($col_count%3 == 1)	{
+    		echo CHtml::tag('div',array('class'=>'row-fluid'));
+    	}
     	echo CHtml::tag('div',array('class'=>'span4'));
     	echo CHtml::tag('ul');
     	echo CHtml::tag('li');
@@ -27,5 +31,8 @@
 		}
 		echo CHtml::closeTag('ul');
 		echo CHtml::closeTag('div');
+    	if ($col_count%3 == 0)	{
+    		echo CHtml::closeTag('div');
+    	}
 	}
 ?>

@@ -157,7 +157,7 @@
                                        'allowedExtensions'=>array("jpg"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit'=>1*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit'=>1*1024*1024,// minimum file size in bytes
-                                       'onComplete'=>'js:function(id, fileName, responseJSON){ if (responseJSON) {$("#Product_largepic").val(responseJSON.largepic); $("#Product_smallpic").val(responseJSON.smallpic); $("#productImage").attr("src",responseJSON.smallpic); $("#hrefProductImage").attr("href",responseJSON.largepic);} }',
+                                       'onComplete'=>'js:function(id, fileName, responseJSON){ if (responseJSON) {$("#Product_largepic").val(responseJSON.largepic); $("#Product_smallpic").val(responseJSON.smallpic); $("#productImage").attr("src",responseJSON.smallpic); $("#Product_img_width").val(responseJSON.img_width); $("#Product_img_height").val(responseJSON.img_height); $("#hrefProductImage").attr("href",responseJSON.largepic);} }',
                                        //'messages'=>array(
                                        //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
                                        //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
@@ -172,6 +172,8 @@
 		</div>
 		<?php
 		echo CHTML::activeHiddenField($model,'smallpic');
+		echo CHTML::activeHiddenField($model,'img_width');
+		echo CHTML::activeHiddenField($model,'img_height');
 		}?>
 		<?php //echo $form->labelEx($model,'uploadedFile'); ?>
 		<?php echo CHTML::activeHiddenField($model,'largepic'); ?>

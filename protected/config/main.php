@@ -107,6 +107,7 @@ return array(
 				'login'=>'user/login/login', // /<service:(vkontakte|google)
 				'user/<controller:\w+>/<action:\w+>/<service:\w+>'=>'user/<controller>/<action>',
 				'category-<slug:.*>' => 'productcategory/view',
+				'product-<slug:.*>' => 'product/view',
 			),
 			'showScriptName' => FALSE,
 		),
@@ -159,7 +160,7 @@ return array(
 				// -- CProfileLogRoute -------------------------------
                 array(
                     'class'=>'CProfileLogRoute',
-                    //'levels'=>'profile',
+                    'levels'=>'profile',
                     //'enabled'=>true,
                 ),
                 // -------------------------------------------------------

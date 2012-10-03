@@ -48,7 +48,7 @@ class ProductController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($slug)
 	{
 		if( Yii::app()->request->isAjaxRequest )
       	{
@@ -58,14 +58,14 @@ class ProductController extends Controller
 			echo CJSON::encode( array(
 				'status' => 'failure',
 				'content' => $this->renderPartial( 'view', array(
-				'model' => $this->loadModel($id) ), true, true ),
+				'model' => $this->loadModel($slug) ), true, true ),
 			));
 			exit;
       	}
       	else
       	{
 			$this->render('view',array(
-				'model'=>$this->loadModel($id),
+				'model'=>$this->loadModel($slug),
 			));
       	}
 	}
@@ -86,9 +86,9 @@ class ProductController extends Controller
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded
 	 */
-	public function loadModel($id)
+	public function loadModel($slug)
 	{
-		$model=Product::model()->findByPk($id);
+		$model=Product::model()->findByAttributes(array('slug'=>$slug));
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

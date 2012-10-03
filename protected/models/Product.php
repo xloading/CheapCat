@@ -51,12 +51,12 @@ class Product extends CActiveRecord
 		return array(
 			array('name, description', 'required'),
 			array('categoryid', 'numerical', 'integerOnly'=>true),
-			array('brand_id', 'numerical', 'integerOnly'=>true),
+			array('brand_id, img_width, img_height', 'numerical', 'integerOnly'=>true),
 			array('name, smallpic, largepic, manual', 'length', 'max'=>100),
 			//array('uploadedFile', 'file', 'types'=>'jpg, gif, png'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, categoryid, description, avg_price', 'safe', 'on'=>'search'),
+			array('id, name, categoryid, description, avg_price, img_width, img_height', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +73,7 @@ class Product extends CActiveRecord
 			'productfeedbacks' => array(self::HAS_MANY, 'Productfeedback', 'productid'),
 			'productrating' => array(self::HAS_ONE, 'Productrating', 'productid'),
 			'brand' => array(self::BELONGS_TO, 'Brand', 'brand_id'),
+			'productattrvalue' => array(self::HAS_MANY, 'Productattrvalue', 'product_id'),
 			'average_price' => array(self::STAT,'Productbysupplier','productid','select'=>'avg(price)'),
 			'minimum_price' => array(self::STAT,'Productbysupplier','productid','select'=>'min(price)'),
 			'maximum_price' => array(self::STAT,'Productbysupplier','productid','select'=>'max(price)')

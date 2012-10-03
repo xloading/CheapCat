@@ -63,7 +63,7 @@
 			 
 			<?php $this->endWidget(); ?>
 		</div>
-		<div class="span2">
+		<div class="span1">
 		</div>
 	</div>
 	<div class="row-fluid contentwrapper">
@@ -87,9 +87,7 @@
 		<?php $this->endWidget(); ?>
 		</div>
 		<div class="span8">
-			<div class="row-fluid">
 			<?php echo $content; ?>
-			</div>
 		</div>
 		<div class="span2">
 		</div>

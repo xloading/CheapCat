@@ -55,3 +55,9 @@ ul {
 .mainabs{
 	position:absolute;
 }
+.product_thumb {
+	text-align:center;
+}
+.product_brief {
+	min-height:125px;
+}

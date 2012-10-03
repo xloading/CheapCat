@@ -6,7 +6,7 @@ class ProductController extends CAdminController
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	//public $layout='/layouts/column1';
+	public $layout='/layouts/main';
 
 	/**
 	 * @return array action filters
@@ -95,6 +95,9 @@ class ProductController extends CAdminController
 				$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/small/'.$imageName), False);
 				$model->largepic = CHtml::normalizeUrl('/images/products/large/'.$imageName);
 				$model->smallpic = CHtml::normalizeUrl('/images/products/small/'.$imageName);
+				$imagesizes = getimagesize(Yii::getPathOfAlias('webroot').'/images/products/small/'.$imageName);
+				$model->img_width = $imagesizes[0];
+				$model->img_height = $imagesizes[1];
 			}
 			// /\ Process image /\
 			
@@ -381,10 +384,15 @@ class ProductController extends CAdminController
 				$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/large/'.$imageName), False);
 				$image->resize(100, 100, IMAGE::AUTO)->quality(75)->sharpen(20);
 				$image->save(CHtml::normalizeUrl(Yii::getPathOfAlias('webroot').'/images/products/small/'.$imageName), False);
+				$imagesizes = getimagesize(Yii::getPathOfAlias('webroot').'/images/products/small/'.$imageName);
+				$model->img_width = $imagesizes[0];
+				$model->img_height = $imagesizes[1];
 				$model->largepic = CHtml::normalizeUrl('/images/products/large/'.$imageName);
 				$model->smallpic = CHtml::normalizeUrl('/images/products/small/'.$imageName);
                 $result['smallpic'] = $model->smallpic;
                 $result['largepic'] = $model->largepic;
+                $result['img_width'] = $model->img_width;
+                $result['img_height'] = $model->img_height;
 				$result=htmlspecialchars(json_encode($result), ENT_NOQUOTES);
                 echo $result;// it's array
 	}
